@@ -1,5 +1,4 @@
 package br.unipe.cc.mpl3.jacademy.persistencia;
-
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.sql.Connection;
@@ -16,14 +15,6 @@ public class DataBase {
     private Connection connection;
     private Statement statement;
 
-    public Connection getConnection() {
-        return connection;
-    }
-
-    public Statement getStatement() {
-        return statement;
-    }
-
     public DataBase() throws SQLException {
         Properties properties = new Properties();
         try {
@@ -35,6 +26,14 @@ public class DataBase {
         } catch (ClassNotFoundException ex) {
         } catch (IOException ex) {
         }
+    }
+
+    public Connection getConnection() {
+        return connection;
+    }
+
+    public Statement getStatement() {
+        return statement;
     }
 
     public void close() throws SQLException{

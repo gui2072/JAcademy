@@ -3,5 +3,7 @@ nbproject/
 build/
 
 *.class
+*dataBase.properties
+
 build.xml
 manifest.mf
