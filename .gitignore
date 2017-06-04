@@ -1,9 +1,9 @@
 dist/
 nbproject/
 build/
+config/dataBase.properties
 
 *.class
-
 
 build.xml
 manifest.mf
