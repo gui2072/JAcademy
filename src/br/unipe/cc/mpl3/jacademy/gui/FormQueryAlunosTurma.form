@@ -23,20 +23,18 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" attributes="0">
+          <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
+                      <Component id="jTFMatricula" min="-2" pref="157" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                       <Component id="jTFNome" min="-2" pref="157" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jTextField1" min="-2" pref="127" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jTextField2" min="-2" pref="127" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
                       <Component id="jButton1" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Component id="jScrollPane2" pref="583" max="32767" attributes="0"/>
-                  <Group type="102" alignment="1" attributes="0">
+                  <Group type="102" attributes="0">
                       <Component id="jBVoltar" min="-2" pref="99" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
                       <Component id="jBExcluir" min="-2" pref="99" max="-2" attributes="0"/>
@@ -53,15 +51,14 @@
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
-              <EmptySpace max="-2" attributes="0"/>
+              <EmptySpace min="-2" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="jTFMatricula" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jTFNome" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jTextField1" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jTextField2" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jButton1" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="jScrollPane2" pref="334" max="32767" attributes="0"/>
+              <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
+              <Component id="jScrollPane2" pref="335" max="32767" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jBIncluir" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -69,7 +66,7 @@
                   <Component id="jBExcluir" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jBVoltar" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace max="-2" attributes="0"/>
+              <EmptySpace min="-2" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -85,14 +82,20 @@
         <Component class="javax.swing.JTable" name="jTTurma">
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-              <Table columnCount="3" rowCount="0">
-                <Column editable="true" title="Professor" type="java.lang.String"/>
-                <Column editable="true" title="Diciplina" type="java.lang.String"/>
-                <Column editable="true" title="Turno" type="java.lang.String"/>
+              <Table columnCount="4" rowCount="0">
+                <Column editable="true" title="Matr&#xed;cula" type="java.lang.String"/>
+                <Column editable="true" title="Nome" type="java.lang.String"/>
+                <Column editable="true" title="Telefone" type="java.lang.String"/>
+                <Column editable="true" title="Email" type="java.lang.String"/>
               </Table>
             </Property>
             <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
               <TableColumnModel selectionModel="0">
+                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                  <Title/>
+                  <Editor/>
+                  <Renderer/>
+                </Column>
                 <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
                   <Title/>
                   <Editor/>
@@ -135,24 +138,22 @@
         <Property name="text" type="java.lang.String" value="Excluir"/>
       </Properties>
     </Component>
+    <Component class="javax.swing.JTextField" name="jTFMatricula">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Matr&#xed;cula"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTFMatriculaActionPerformed"/>
+      </Events>
+    </Component>
     <Component class="javax.swing.JTextField" name="jTFNome">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Professor"/>
+        <Property name="text" type="java.lang.String" value="Nome"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="jBVoltar">
       <Properties>
         <Property name="text" type="java.lang.String" value="Voltar"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JTextField" name="jTextField1">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Diciplina"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JTextField" name="jTextField2">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Turno"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="jButton1">
