@@ -3,26 +3,47 @@ import java.util.Date;
 
 /**
  *
- * @author Nitai Charan
+ * @author bruno
  */
+
 public class Professor extends Pessoa {
-
-    private Date dataContra;
-    private String titularidade;
-
-    public Date getDataContra() {
-        return dataContra;
+    private Date dataContratacao;
+    private String situacao, obs, titularidade;
+    
+    public Professor(){
+        
     }
 
-    public void setDataContra(Date dataContra) {
-        this.dataContra = dataContra;
+    public Date getdataContratacao() {
+        return dataContratacao;
     }
 
-    public String getTitularidade() {
+    public String getsituacao() {
+        return situacao;
+    }
+
+    public String getobs() {
+        return obs;
+    }
+    
+        public String gettitularidade() {
         return titularidade;
     }
 
-    public void setTitularidade(String titularidade) {
+    public void setdataContratacao(Date DataContratacao) {
+        this.dataContratacao = dataContratacao;
+    }
+
+    public void setSituacao(String Situacao) {
+        this.situacao = situacao;
+    }
+
+    public void setObs(String Obs) {
+        this.obs = obs;
+    }
+    
+    public void setTitularidade(String Titularidade) {
         this.titularidade = titularidade;
     }
+    
 }

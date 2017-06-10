@@ -6,6 +6,7 @@ import java.util.Date;
  * @author Nitai Charan
  */
 abstract class Pessoa {
+    protected int id;
     protected String matricula;
     protected boolean matriculaEstado;
 
@@ -153,6 +154,14 @@ abstract class Pessoa {
 
     public void setObservacao(String observacao) {
         this.observacao = observacao;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
     
 }
