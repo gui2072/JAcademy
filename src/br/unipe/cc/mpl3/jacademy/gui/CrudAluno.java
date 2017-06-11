@@ -6,6 +6,9 @@
 package br.unipe.cc.mpl3.jacademy.gui;
 
 import br.unipe.cc.mpl3.jacademy.fachada.FachadaAluno;
+import java.util.HashMap;
+import java.util.Map;
+import javax.swing.JFrame;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
@@ -80,6 +83,11 @@ public class CrudAluno extends javax.swing.JFrame {
         jScrollPane1.setViewportView(tAlunos);
 
         bAdicionar.setText("Adicionar");
+        bAdicionar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bAdicionarActionPerformed(evt);
+            }
+        });
 
         bExcluir.setText("Excluir");
 
@@ -169,6 +177,34 @@ public class CrudAluno extends javax.swing.JFrame {
     private void bVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bVoltarActionPerformed
         this.dispose();
     }//GEN-LAST:event_bVoltarActionPerformed
+
+    private void bAdicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bAdicionarActionPerformed
+        FormAluno formAluno = new FormAluno();
+        
+        Map<String, String> map = new HashMap<>();
+
+        map.put("matricula", "A171");
+        map.put("matriculaData", "10/16/4165");
+        map.put("matriculaSituacao", "Desativada");
+        map.put("dadosProfissao", "Programador");
+        map.put("dadosNome", "ABC");
+        map.put("dadosRg", "51654161");
+        map.put("dadosCPF", "132.456.479-56");
+        map.put("dadosEstadoCivil", "Casado");
+        map.put("dadosSexo", "Masculino");
+        map.put("dadosDataNascimento", "15/12/1956");
+        map.put("contatoEmail", "abc@abc.com");
+        map.put("contatoTelefone", "83 23561365");
+        map.put("enderecoLagradouro", "rua abc");
+        map.put("enderecoBairro", "abc");
+        map.put("enderecoCidade", "cidade abc");
+        map.put("enderecoEstado", "PB");
+        map.put("enderecoCep", "32629-523");
+        map.put("observacoes", "afawdw");
+        
+        formAluno.setDados(map);
+        formAluno.setVisible(true);
+    }//GEN-LAST:event_bAdicionarActionPerformed
 
     /**
      * @param args the command line arguments
