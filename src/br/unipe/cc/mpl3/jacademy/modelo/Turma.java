@@ -6,7 +6,7 @@
 package br.unipe.cc.mpl3.jacademy.modelo;
 
 import br.unipe.cc.mpl3.jacademy.persistencia.RepositorioTurma;
-import java.util.List;
+import java.util.Set;
 
 
 /**
@@ -43,7 +43,10 @@ public class Turma {
         this.turno = turno;
     }
 
-    public static List<Turma> getTurmas() {
+    public static Set<Turma> getTurmas() {
         return RepositorioTurma.getTurmas();
+    }
+    public static Set<Turma> get1Dado(String query, String dado) {
+        return RepositorioTurma.get1Dado(query,dado);
     }
 }

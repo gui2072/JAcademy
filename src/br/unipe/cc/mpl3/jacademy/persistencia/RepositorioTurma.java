@@ -8,16 +8,17 @@ package br.unipe.cc.mpl3.jacademy.persistencia;
 import br.unipe.cc.mpl3.jacademy.modelo.Turma;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  *
  * @author dan
  */
 public class RepositorioTurma {
-    public static List<Turma> getTurmas() {
-        List<Turma> turmas = new ArrayList<>();
+
+    public static Set<Turma> getTurmas() {
+        Set<Turma> turmas = new HashSet<>();
         try {
             DataBase database = new DataBase();
             ResultSet resultSet = database.getStatement().executeQuery("SELECT id, nome, turno FROM turma");
@@ -32,10 +33,27 @@ public class RepositorioTurma {
             database.getStatement().close(); // Em avaliação
             resultSet.close();
         } catch (SQLException ex) {
-        } finally {
-
         }
         return turmas;
     }
 
+    public static Set<Turma> get1Dado(String query, String dado) {
+        Set<Turma> dados = new HashSet<>();
+        try {
+            DataBase database = new DataBase();
+            ResultSet resultSet = database.getStatement().executeQuery(query);
+            while (resultSet.next()) {
+                Turma turma = new Turma();
+                turma.setId(resultSet.getInt("id"));
+                turma.setNome(resultSet.getString("nome"));
+                turma.setTurno(resultSet.getString("turno"));
+                dados.add(turma);
+            }
+            database.close();
+            database.getStatement().close(); // Em avaliação
+            resultSet.close();
+        } catch (SQLException ex) {
+        }
+        return dados;
+    }
 }

@@ -10,12 +10,17 @@ import javax.swing.table.DefaultTableModel;
 import br.unipe.cc.mpl3.jacademy.modelo.Turma;
 import java.util.List;
 
-
 /**
  *
  * @author dan
  */
 public class FormQueryTurma extends javax.swing.JFrame {
+
+    public static void main(String[] args) {
+        FormQueryTurma janela = new FormQueryTurma();
+        janela.setVisible(true);
+        //janela.readJTTurma();
+    }
 
     /**
      * Creates new form FormTurma
@@ -56,7 +61,7 @@ public class FormQueryTurma extends javax.swing.JFrame {
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Object.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -79,6 +84,11 @@ public class FormQueryTurma extends javax.swing.JFrame {
         jBVoltar.setText("Voltar");
 
         jTFTurno.setText("Turno");
+        jTFTurno.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTFTurnoActionPerformed(evt);
+            }
+        });
 
         jBPesquisa.setText("Pesquisar");
 
@@ -132,7 +142,7 @@ public class FormQueryTurma extends javax.swing.JFrame {
                     .addComponent(jCBProfessor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jCBDisciplina, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 291, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 311, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jBEditar)
@@ -149,20 +159,50 @@ public class FormQueryTurma extends javax.swing.JFrame {
     }//GEN-LAST:event_jBIncluirActionPerformed
 
     private void jTFNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTFNomeActionPerformed
-        // TODO add your handling code here:
+        //TODO add your handling code here:
+        String nome = jTFNome.getText();
+        String query= "SELECT * FROM turma WHERE nome = \'" + nome + "\'";
+        if (nome != null && nome != "") {
+            DefaultTableModel tableModel = (DefaultTableModel) jTTurma.getModel();
+            while (tableModel.getRowCount() != 0) {
+                tableModel.removeRow(0);
+            }
+            for (Object item : FachadaTurma.get1Dado(query,nome)) {
+                tableModel.addRow((Object[]) item);
+            }
+        } else {
+            System.out.println("Nulo");
+        }
     }//GEN-LAST:event_jTFNomeActionPerformed
+
+    private void jTFTurnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTFTurnoActionPerformed
+        //TODO add your handling code here:
+        String turno = jTFTurno.getText();
+        String query= "SELECT * FROM turma WHERE turno = \'" + turno + "\'";
+        if (turno != null && turno != "") {
+            DefaultTableModel tableModel = (DefaultTableModel) jTTurma.getModel();
+            while (tableModel.getRowCount() != 0) {
+                tableModel.removeRow(0);
+            }
+            for (Object item : FachadaTurma.get1Dado(query,turno)) {
+                tableModel.addRow((Object[]) item);
+            }
+        } else {
+            System.out.println("Nulo");
+        }
+    }//GEN-LAST:event_jTFTurnoActionPerformed
     public void readJTTurma() {
         DefaultTableModel tableModel = (DefaultTableModel) jTTurma.getModel();
-        
-        while(tableModel.getRowCount() != 0) {
+
+        while (tableModel.getRowCount() != 0) {
             tableModel.removeRow(0);
         }
-        
-        for(Object item : FachadaTurma.busca()){
-            tableModel.addRow((Object[]) item);     
+
+        for (Object item : FachadaTurma.getTurmas()) {
+            tableModel.addRow((Object[]) item);
         }
     }
-    
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBEditar;
