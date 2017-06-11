@@ -7,10 +7,10 @@ import java.sql.SQLException;
  *
  * @author bruno
  */
-public abstract class RepositorioGenerico {
+public abstract class Repositorio {
     private DataBase database;
 
-    protected RepositorioGenerico() {
+    protected Repositorio() {
         try {
             database = new DataBase();
         } catch (SQLException ex) {
