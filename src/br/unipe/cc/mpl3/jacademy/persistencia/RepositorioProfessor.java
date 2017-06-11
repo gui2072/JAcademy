@@ -52,8 +52,8 @@ public class RepositorioProfessor extends RepositorioGenerico implements IReposi
         return resultado;
     }
 
-    @Override
-    public List<Professor> listar() {
+
+    public List<Professor> getProfessores() {
 
         List<Professor> professores = new ArrayList<Professor>();
 
@@ -67,7 +67,7 @@ public class RepositorioProfessor extends RepositorioGenerico implements IReposi
                 Professor professor = new Professor();
 
                 professor.setId(rs.getInt("id"));
-                professor.setMatricula(rs.getString("matricula"));
+                professor.setMatricula(rs.getInt("matricula"));
                 professor.setNome(rs.getString("nome"));
                 professor.setCpf(rs.getString("cpf"));
 

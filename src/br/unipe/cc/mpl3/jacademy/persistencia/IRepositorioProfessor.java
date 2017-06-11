@@ -23,7 +23,7 @@ public interface IRepositorioProfessor {
     * Lista todos os professores na base de dados.
     * @return List
     */
-    public List<Professor> listar();
+    public List<Professor> getProfessores();
     
     /**
     * Faz a atualização do professor na base de dados.
