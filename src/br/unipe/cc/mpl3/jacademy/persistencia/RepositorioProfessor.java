@@ -5,14 +5,12 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
  * @author bruno
  */
-public class RepositorioProfessor extends RepositorioGenerico implements IRepositorioProfessor{
+public class RepositorioProfessor extends Repositorio implements IRepositorioProfessor{
 
     private DataBase database;
 
@@ -52,8 +50,8 @@ public class RepositorioProfessor extends RepositorioGenerico implements IReposi
         return resultado;
     }
 
-    @Override
-    public List<Professor> listar() {
+
+    public List<Professor> getProfessores() {
 
         List<Professor> professores = new ArrayList<Professor>();
 
@@ -67,7 +65,7 @@ public class RepositorioProfessor extends RepositorioGenerico implements IReposi
                 Professor professor = new Professor();
 
                 professor.setId(rs.getInt("id"));
-                professor.setMatricula(rs.getString("matricula"));
+                professor.setMatricula(rs.getInt("matricula"));
                 professor.setNome(rs.getString("nome"));
                 professor.setCpf(rs.getString("cpf"));
 
@@ -117,5 +115,12 @@ public class RepositorioProfessor extends RepositorioGenerico implements IReposi
         }
         
         return resultado;
+    }
+
+    @Override
+    public Professor getProfessor(String id) {
+        
+        Professor professor = new Professor();            
+        return professor;
     }
 }
