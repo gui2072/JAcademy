@@ -18,28 +18,4 @@ public class FachadaTurma {
         }
         return lista;
     }
-
-    public static void setNomeTurma(String nome) {
-        Turma turma = new Turma();
-        turma.setNome(nome);
-    }
-
-    public static void setIdTurma(int id) {
-        Turma turma = new Turma();
-        turma.setId(id);
-    }
-
-    public static void setTurnoTurma(String turno) {
-        Turma turma = new Turma();
-        turma.setTurno(turno);
-    }
-
-    public static Turma getTurma() {
-        Turma turma = new Turma();
-        return turma;
-    }
-
-    public static List getTurmas() {
-        return Turma.getTurmas();
-    }
 }

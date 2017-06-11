@@ -7,7 +7,7 @@ import java.util.Date;
  */
 abstract class Pessoa {
     protected int id;
-    protected String matricula;
+    protected int matricula;
     protected boolean matriculaEstado;
 
     protected String nome;
@@ -28,11 +28,11 @@ abstract class Pessoa {
     protected String cep;
     protected String observacao;
 
-    public String getMatricula() {
+    public int getMatricula() {
         return matricula;
     }
 
-    public void setMatricula(String matricula) {
+    public void setMatricula(int matricula) {
         this.matricula = matricula;
     }
 

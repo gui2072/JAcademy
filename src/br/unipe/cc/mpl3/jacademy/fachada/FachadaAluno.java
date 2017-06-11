@@ -5,6 +5,7 @@
  */
 package br.unipe.cc.mpl3.jacademy.fachada;
 
+import br.unipe.cc.mpl3.jacademy.modelo.Aluno;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,10 +18,9 @@ public abstract class FachadaAluno {
 
     public static List busca(String busca){
         List<Object> lista = new ArrayList<>();
-    
-        lista.add(new Object[]{"A171","Paulo","123.123.123-56"});
-        lista.add(new Object[]{"A173","Nitai","796.856.265-53"});
-        
+        for(Aluno aluno : Aluno.getAlunos()){
+            lista.add(new Object[]{aluno.getSexo(), aluno.getTelefone(), aluno.getProfissao(), aluno.getObservacao(), aluno.getEmail(), aluno.getRg(), aluno.getNome(), aluno.getDataNasc(), aluno.getMatricula(), aluno.getSituacao(), aluno.getEstadoCivil(), aluno.getMatricula()});
+        }
         return lista;
     }
 }
