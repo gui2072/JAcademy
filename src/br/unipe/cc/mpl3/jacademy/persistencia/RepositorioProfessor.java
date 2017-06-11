@@ -5,14 +5,12 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
  * @author bruno
  */
-public class RepositorioProfessor extends RepositorioGenerico implements IRepositorioProfessor{
+public class RepositorioProfessor extends Repositorio implements IRepositorioProfessor{
 
     private DataBase database;
 
@@ -117,5 +115,12 @@ public class RepositorioProfessor extends RepositorioGenerico implements IReposi
         }
         
         return resultado;
+    }
+
+    @Override
+    public Professor getProfessor(String id) {
+        
+        Professor professor = new Professor();            
+        return professor;
     }
 }

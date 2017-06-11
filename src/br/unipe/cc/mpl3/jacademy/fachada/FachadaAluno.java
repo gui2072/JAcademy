@@ -18,9 +18,8 @@ public abstract class FachadaAluno {
 
     public static List busca(String busca){
         List<Object> lista = new ArrayList<>();
-        for(Aluno aluno : Aluno.getAlunos()){
-            lista.add(new Object[]{aluno.getSexo(), aluno.getTelefone(), aluno.getProfissao(), aluno.getObservacao(), aluno.getEmail(), aluno.getRg(), aluno.getNome(), aluno.getDataNasc(), aluno.getMatricula(), aluno.getSituacao(), aluno.getEstadoCivil(), aluno.getMatricula()});
-        }
+        lista.add(new Object[]{"4641","Oasfwe","132.156.466-45"});
+        
         return lista;
     }
 }

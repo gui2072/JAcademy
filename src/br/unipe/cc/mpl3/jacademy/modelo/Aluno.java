@@ -27,7 +27,4 @@ public class Aluno extends Pessoa {
     public void setSituacao(String situacao) {
         this.situacao = situacao;
     }
-    public static Set<Aluno> getAlunos() {
-        return RepositorioAluno.getAlunos();
-    }
 }

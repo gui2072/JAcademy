@@ -25,9 +25,18 @@ abstract class Pessoa {
     protected String logradouro;
     protected String bairro;
     protected String cidade;
+    protected String estado;
     protected String cep;
     protected String observacao;
 
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
+    
     public int getMatricula() {
         return matricula;
     }
