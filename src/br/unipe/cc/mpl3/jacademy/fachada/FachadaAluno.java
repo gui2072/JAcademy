@@ -15,11 +15,11 @@ import java.util.List;
  * @author paulo
  */
 public abstract class FachadaAluno {
-
-    public static List busca(String busca){
+    public static List busca(String query) {
         List<Object> lista = new ArrayList<>();
-        lista.add(new Object[]{"4641","Oasfwe","132.156.466-45"});
-        
+        for (Aluno aluno : Aluno.getDadoAluno(query)) {
+            lista.add(new Object[]{aluno.getMatricula(),aluno.getNome(), aluno.getTelefone(), aluno.getEmail()});
+        }
         return lista;
     }
 }

@@ -15,23 +15,23 @@ import java.util.Set;
  *
  * @author paulo
  */
-public class RepositorioAluno extends RepositorioGenerico{
+public class RepositorioAluno{
 
-    public boolean inserir(Aluno aluno){
-        boolean retorno = false;
+    //public boolean inserir(Aluno aluno){
+    //    boolean retorno = false;
+    //    
+    //    try {
+    //        DataBase database = new DataBase();
+    //        
+    //        String sql = "INSERT INTO aluno(data_matricula, situacao, profissao, nome, identidade, cpf, estado_civil, sexo, data_nascimento, email, telefone, endereco, bairro, cidade, estado, cep, observacao) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+    //        save(sql, aluno.getDataMatricula(), aluno.getSituacao(),aluno.getProfissao(), aluno.getNome(), aluno.getRg(), aluno.getCpf(), aluno.getEstadoCivil(),aluno.getSexo(),aluno.getDataNasc(),aluno.getEmail(),aluno.getTelefone(),aluno.getLogradouro(), aluno.getBairro(), aluno.getCidade(), aluno.getEstado(), aluno.getCep(),aluno.getObservacao());
+    //        retorno = true;
+    //    } catch (SQLException e) {
+    //    }
         
-        try {
-            DataBase database = new DataBase();
-            
-            String sql = "INSERT INTO aluno(data_matricula, situacao, profissao, nome, identidade, cpf, estado_civil, sexo, data_nascimento, email, telefone, endereco, bairro, cidade, estado, cep, observacao) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
-            save(sql, aluno.getDataMatricula(), aluno.getSituacao(),aluno.getProfissao(), aluno.getNome(), aluno.getRg(), aluno.getCpf(), aluno.getEstadoCivil(),aluno.getSexo(),aluno.getDataNasc(),aluno.getEmail(),aluno.getTelefone(),aluno.getLogradouro(), aluno.getBairro(), aluno.getCidade(), aluno.getEstado(), aluno.getCep(),aluno.getObservacao());
-            retorno = true;
-        } catch (SQLException e) {
-        }
-        
     
-        return retorno;
-    }
+    //    return retorno;
+    //}
     
     
     
@@ -42,12 +42,12 @@ public class RepositorioAluno extends RepositorioGenerico{
     
     
     
-    public static Set<Aluno> getAlunos() {
+    public static Set<Aluno> getDadoAluno(String query) {
         Set<Aluno> alunos = new HashSet<>();
 
         try {
             DataBase database = new DataBase();
-            ResultSet resultSet = database.getStatement().executeQuery("SELECT * FROM aluno");
+            ResultSet resultSet = database.getStatement().executeQuery(query);
             while (resultSet.next()) {
                 Aluno aluno = new Aluno();
                 aluno.setSexo(resultSet.getString("sexo"));
@@ -55,11 +55,9 @@ public class RepositorioAluno extends RepositorioGenerico{
                 aluno.setProfissao(resultSet.getString("profissao"));
                 aluno.setObservacao(resultSet.getString("observacao"));
                 aluno.setEmail(resultSet.getString("email"));
-                aluno.setRg(resultSet.getString("rg"));
+                aluno.setRg(resultSet.getString("identidade"));
                 aluno.setNome(resultSet.getString("nome"));
-                aluno.setDataMatricula(resultSet.getDate("data_matricula"));
                 aluno.setSituacao(resultSet.getString("situacao"));
-                aluno.setDataNasc(resultSet.getDate("data_nascimento"));
                 aluno.setEstadoCivil(resultSet.getString("estado_civil"));
                 aluno.setMatricula(resultSet.getInt("Matricula"));
                 alunos.add(aluno);
@@ -71,7 +69,6 @@ public class RepositorioAluno extends RepositorioGenerico{
         } catch (SQLException e) {
 
         }
-
-        return null;
+        return alunos;
     }
 }

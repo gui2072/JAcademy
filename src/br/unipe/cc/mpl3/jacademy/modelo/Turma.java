@@ -42,11 +42,12 @@ public class Turma {
     public void setTurno(String turno) {
         this.turno = turno;
     }
-
-    public static Set<Turma> getTurmas() {
-        return RepositorioTurma.getTurmas();
+    public static Set<Turma> getDadoTurma(String query) {
+        return RepositorioTurma.getDadoTurmas(query);
     }
-    public static Set<Turma> get1Dado(String query, String dado) {
-        return RepositorioTurma.get1Dado(query,dado);
+
+    @Override
+    public String toString() {
+        return "Turma{" + "nome=" + nome + '}';
     }
 }

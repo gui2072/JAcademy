@@ -17,27 +17,27 @@ import java.util.Set;
  */
 public class RepositorioTurma {
 
-    public static Set<Turma> getTurmas() {
-        Set<Turma> turmas = new HashSet<>();
+    public static Set<Turma> getDadoTurmas(String query) {
+        Set<Turma> dados = new HashSet<>();
         try {
             DataBase database = new DataBase();
-            ResultSet resultSet = database.getStatement().executeQuery("SELECT id, nome, turno FROM turma");
+            ResultSet resultSet = database.getStatement().executeQuery(query);
             while (resultSet.next()) {
                 Turma turma = new Turma();
                 turma.setId(resultSet.getInt("id"));
                 turma.setNome(resultSet.getString("nome"));
                 turma.setTurno(resultSet.getString("turno"));
-                turmas.add(turma);
+                dados.add(turma);
             }
             database.close();
             database.getStatement().close(); // Em avaliação
             resultSet.close();
         } catch (SQLException ex) {
         }
-        return turmas;
+        return dados;
     }
 
-    public static Set<Turma> get1Dado(String query, String dado) {
+    public static Set<Turma> getDadoAluno(String query) {
         Set<Turma> dados = new HashSet<>();
         try {
             DataBase database = new DataBase();
