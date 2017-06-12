@@ -38,9 +38,17 @@ public class RepositorioAluno{
     
     
     
-    
-    
-    
+    /**
+     * Pega atributos de Aluno salvos no BD.
+     * Método servira apenas para transportar informações contidas no 
+     * BD referente a Aluno.
+     * Possibilita de query's  na tabela 'aluno', somente necessário passar por
+     * parametro (SELECT * FROM aluno WHERE query).
+     * 
+     * 
+     * @param query
+     * @return Resultado da query realizado no BD em um conjunto Set de Aluno.
+     */   
     
     public static Set<Aluno> getDadoAluno(String query) {
         Set<Aluno> alunos = new HashSet<>();
@@ -62,12 +70,10 @@ public class RepositorioAluno{
                 aluno.setMatricula(resultSet.getInt("Matricula"));
                 alunos.add(aluno);
             }
-
             database.close();
             database.getStatement().close(); // Em avaliação
             resultSet.close();
         } catch (SQLException e) {
-
         }
         return alunos;
     }

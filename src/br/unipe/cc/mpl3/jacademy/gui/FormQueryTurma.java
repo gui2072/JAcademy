@@ -5,14 +5,15 @@
  */
 package br.unipe.cc.mpl3.jacademy.gui;
 
+import br.unipe.cc.mpl3.jacademy.fachada.FachadaDisciplina;
+import br.unipe.cc.mpl3.jacademy.fachada.FachadaProfessor;
 import br.unipe.cc.mpl3.jacademy.fachada.FachadaTurma;
-import javax.swing.table.DefaultTableModel;
 import br.unipe.cc.mpl3.jacademy.modelo.Turma;
-import java.util.List;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author dan
+ * @author Nitai Charan
  */
 public class FormQueryTurma extends javax.swing.JFrame {
 
@@ -20,7 +21,8 @@ public class FormQueryTurma extends javax.swing.JFrame {
         FormQueryTurma janela = new FormQueryTurma();
         janela.setVisible(true);
         janela.readJTTurma();
-        janela.viewCBTeste();
+        janela.viewCBProfessor();
+        janela.viewCBDisciplina();
     }
 
     /**
@@ -106,6 +108,12 @@ public class FormQueryTurma extends javax.swing.JFrame {
             }
         });
 
+        jCBDisciplina.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCBDisciplinaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -186,32 +194,41 @@ public class FormQueryTurma extends javax.swing.JFrame {
 
     private void jCBProfessorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCBProfessorActionPerformed
         // TODO add your handling code here:
+        DefaultTableModel tableModel = (DefaultTableModel) jTTurma.getModel();
+        Object professor = jCBProfessor.getSelectedItem();
+        printTTurma("SELECT * from turma where id in (SELECT idTurma FROM leciona where idProfessor in (SELECT matricula FROM professor where matricula = \'" + professor + "\'))", tableModel);  
     }//GEN-LAST:event_jCBProfessorActionPerformed
+
+    private void jCBDisciplinaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCBDisciplinaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jCBDisciplinaActionPerformed
     public void readJTTurma() {
         //TODO add your handling code here:
         DefaultTableModel tableModel = (DefaultTableModel) jTTurma.getModel();
         printTTurma("SELECT * FROM turma", tableModel);
     }
     
-    public void viewCBTeste() {
-        for (Object item : FachadaTurma.getDadoTurma("SELECT * FROM turma")) {
-            jCBProfessor.addItem(item);
-            System.out.println(item);
-        }
-    }
-
     public void viewCBProfessor() {
-        for (Object item : FachadaTurma.getDadoTurma("SELECT nome FROM professor")) {
-            jCBProfessor.addItem(item);
+        for (Object item : FachadaProfessor.busca()) {
+            jCBProfessor.addItem(((Object[])item)[0]);
+            
         }
     }
 
     public void viewCBDisciplina() {
-        for (Object item : FachadaTurma.getDadoTurma("SELECT nome FROM disciplina")) {
-            jCBDisciplina.addItem(item);
+        for (Object item : FachadaDisciplina.getDadoDisciplina("SELECT * FROM disciplina")) {
+            jCBDisciplina.addItem(((Object[])item)[1]);
         }
     }
 
+    /**
+     * Imprime na jTTurma valores resgatados em persitencia.
+     * Valores correspondem aos atributos de Turma.
+     * 
+     * @see FachadaTurma
+     * @param query a ser realizada em persistencia
+     * @param tableModel modelo de tabela para referencia
+     */
     public void printTTurma(String query, DefaultTableModel tableModel) {
         //TODO add your handling code here:
         while (tableModel.getRowCount() != 0) {

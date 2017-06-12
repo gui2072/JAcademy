@@ -10,7 +10,7 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author dan
+ * @author Nitai Charan
  */
 public class FormQueryAlunosTurma extends javax.swing.JFrame {
 

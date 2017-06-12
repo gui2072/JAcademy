@@ -11,7 +11,7 @@ import java.util.Set;
 
 /**
  *
- * @author dan
+ * @author Nitai Charan
  */
 public class Turma {
 
@@ -42,12 +42,17 @@ public class Turma {
     public void setTurno(String turno) {
         this.turno = turno;
     }
+    /**
+     * Retorna conjunto de Objetos Turma para tratamento na interfece
+     * grafica.
+     * Posibilita query's para resgate de turma (SELECT * FROM turma query) 
+     * no BD.
+     * 
+     * @author Nitai Charan
+     * @param query
+     * @return Resultado da query realizado no BD em um conjunto Set de Turma.
+    */
     public static Set<Turma> getDadoTurma(String query) {
         return RepositorioTurma.getDadoTurmas(query);
-    }
-
-    @Override
-    public String toString() {
-        return "Turma{" + "nome=" + nome + '}';
     }
 }
