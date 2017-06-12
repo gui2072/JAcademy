@@ -5,32 +5,22 @@
  */
 package br.unipe.cc.mpl3.jacademy.gui;
 
-import br.unipe.cc.mpl3.jacademy.fachada.FachadaDisciplina;
-import br.unipe.cc.mpl3.jacademy.fachada.FachadaProfessor;
-import br.unipe.cc.mpl3.jacademy.fachada.FachadaTurma;
+import br.unipe.cc.mpl3.jacademy.fachada.FachadaAluno;
 import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author Nitai Charan
  */
-public class FormQueryTurma extends javax.swing.JFrame {
-
-    public static void main(String[] args) {
-        FormQueryTurma janela = new FormQueryTurma();
-        janela.setVisible(true);
-        janela.readJTTurma();
-        janela.viewCBProfessor();
-        janela.viewCBDisciplina();
-    }
+public class CrudAlunosTurma extends javax.swing.JFrame {
 
     /**
      * Creates new form FormTurma
      */
-    public FormQueryTurma() {
+    public CrudAlunosTurma() {
         initComponents();
         
-        setTitle("Cadastro de Turmas");
+        setTitle("Cadastro de Alunos/Turma");
 	setResizable(false);
         setLocationRelativeTo(null);
     }
@@ -49,19 +39,17 @@ public class FormQueryTurma extends javax.swing.JFrame {
         jBEditar = new javax.swing.JButton();
         jBIncluir = new javax.swing.JButton();
         jBExcluir = new javax.swing.JButton();
-        jBVoltar = new javax.swing.JButton();
-        jTFTurno = new javax.swing.JTextField();
-        jBPesquisa = new javax.swing.JButton();
+        jTFMatricula = new javax.swing.JTextField();
         jTFNome = new javax.swing.JTextField();
-        jCBProfessor = new javax.swing.JComboBox<>();
-        jCBDisciplina = new javax.swing.JComboBox<>();
+        jBVoltar = new javax.swing.JButton();
+        jBPesquisar = new javax.swing.JButton();
 
         jTTurma.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Nome", "Professor", "Diciplina", "Turno"
+                "Matrícula", "Nome", "Telefone", "Email"
             }
         ) {
             Class[] types = new Class [] {
@@ -85,21 +73,12 @@ public class FormQueryTurma extends javax.swing.JFrame {
 
         jBExcluir.setText("Excluir");
 
-        jBVoltar.setText("Voltar");
-        jBVoltar.addActionListener(new java.awt.event.ActionListener() {
+        jTFMatricula.setText("Matrícula");
+        jTFMatricula.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBVoltarActionPerformed(evt);
+                jTFMatriculaActionPerformed(evt);
             }
         });
-
-        jTFTurno.setText("Turno");
-        jTFTurno.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTFTurnoActionPerformed(evt);
-            }
-        });
-
-        jBPesquisa.setText("Pesquisar");
 
         jTFNome.setText("Nome");
         jTFNome.addActionListener(new java.awt.event.ActionListener() {
@@ -108,15 +87,12 @@ public class FormQueryTurma extends javax.swing.JFrame {
             }
         });
 
-        jCBProfessor.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCBProfessorActionPerformed(evt);
-            }
-        });
+        jBVoltar.setText("Voltar");
 
-        jCBDisciplina.addActionListener(new java.awt.event.ActionListener() {
+        jBPesquisar.setText("Pesquisar");
+        jBPesquisar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCBDisciplinaActionPerformed(evt);
+                jBPesquisarActionPerformed(evt);
             }
         });
 
@@ -127,17 +103,13 @@ public class FormQueryTurma extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2)
                     .addGroup(layout.createSequentialGroup()
+                        .addComponent(jTFMatricula, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jTFNome, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTFTurno, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jCBProfessor, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jCBDisciplina, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
-                        .addComponent(jBPesquisa))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jBPesquisar))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 583, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jBVoltar, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -153,24 +125,33 @@ public class FormQueryTurma extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jBPesquisa)
+                    .addComponent(jTFMatricula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTFNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTFTurno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jCBProfessor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jCBDisciplina, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 323, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
+                    .addComponent(jBPesquisar))
+                .addGap(17, 17, 17)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 335, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jBIncluir)
-                    .addComponent(jBExcluir)
                     .addComponent(jBEditar)
+                    .addComponent(jBExcluir)
                     .addComponent(jBVoltar))
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jTFMatriculaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTFMatriculaActionPerformed
+        //TODO add your handling code here:
+        DefaultTableModel tableModel = (DefaultTableModel) jTTurma.getModel();
+        String matricula = jTFMatricula.getText();
+        if (matricula != null && matricula != "") {
+            printTTurma("SELECT * FROM aluno WHERE matricula = \'" + matricula + "\'", tableModel);
+        } else {
+            System.out.println("Nulo");
+        }
+    }//GEN-LAST:event_jTFMatriculaActionPerformed
 
     private void jBIncluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBIncluirActionPerformed
         // TODO add your handling code here:
@@ -181,87 +162,52 @@ public class FormQueryTurma extends javax.swing.JFrame {
         DefaultTableModel tableModel = (DefaultTableModel) jTTurma.getModel();
         String nome = jTFNome.getText();
         if (nome != null && nome != "") {
-            printTTurma("SELECT * FROM turma WHERE nome = \'" + nome + "\'", tableModel);
+            printTTurma("SELECT * FROM aluno WHERE nome = \'" + nome + "\'", tableModel);
         } else {
             System.out.println("Nulo");
         }
     }//GEN-LAST:event_jTFNomeActionPerformed
 
-    private void jTFTurnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTFTurnoActionPerformed
+    private void jBPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBPesquisarActionPerformed
         //TODO add your handling code here:
-        String turno = jTFTurno.getText();
         DefaultTableModel tableModel = (DefaultTableModel) jTTurma.getModel();
-        if (turno != null && turno != "") {
-            printTTurma("SELECT * FROM turma WHERE turno = \'" + turno + "\'", tableModel);
+        String nome = jTFNome.getText();
+        String matricula = jTFMatricula.getText();
+        if (nome != null && nome != "") {
+            printTTurma("SELECT * FROM aluno WHERE nome = \'" + nome + "\' and matricula =  \'" + matricula + "\'", tableModel);
         } else {
             System.out.println("Nulo");
         }
-    }//GEN-LAST:event_jTFTurnoActionPerformed
+    }//GEN-LAST:event_jBPesquisarActionPerformed
 
-    private void jCBProfessorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCBProfessorActionPerformed
-        // TODO add your handling code here:
-//        DefaultTableModel tableModel = (DefaultTableModel) jTTurma.getModel();
-//        Object professor = jCBProfessor.getSelectedItem();
-        //printTTurma("SELECT * from turma where id in (SELECT idTurma FROM leciona where idProfessor in (SELECT matricula FROM professor where matricula = \'" + professor + "\'))", tableModel);  
-    }//GEN-LAST:event_jCBProfessorActionPerformed
-
-    private void jCBDisciplinaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCBDisciplinaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jCBDisciplinaActionPerformed
-
-    private void jBVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBVoltarActionPerformed
-        // TODO add your handling code here:
-        dispose();
-    }//GEN-LAST:event_jBVoltarActionPerformed
-    public void readJTTurma() {
+    public void readJTurma() {
         //TODO add your handling code here:
         DefaultTableModel tableModel = (DefaultTableModel) jTTurma.getModel();
-        printTTurma("SELECT * FROM turma", tableModel);
-    }
-    
-    public void viewCBProfessor() {
-        for (Object item : FachadaProfessor.busca()) {
-            jCBProfessor.addItem(((Object[])item)[0]);
-            
-        }
+        printTTurma("SELECT * FROM aluno where aluno.matricula in (SELECT idAluno FROM integrado);", tableModel);
     }
 
-    public void viewCBDisciplina() {
-        for (Object item : FachadaDisciplina.getDadoDisciplina("SELECT * FROM disciplina")) {
-            jCBDisciplina.addItem(((Object[])item)[1]);
-        }
-    }
-
-    /**
-     * Imprime na jTTurma valores resgatados em persitencia.
-     * Valores correspondem aos atributos de Turma.
-     * 
-     * @see FachadaTurma
-     * @param query a ser realizada em persistencia
-     * @param tableModel modelo de tabela para referencia
-     */
     public void printTTurma(String query, DefaultTableModel tableModel) {
         //TODO add your handling code here:
         while (tableModel.getRowCount() != 0) {
             tableModel.removeRow(0);
         }
-        for (Object item : FachadaTurma.getDadoTurma(query)) {
+        try{
+            for (Object item : FachadaAluno.busca(query)) {
             tableModel.addRow((Object[]) item);
         }
+        }catch(NullPointerException ex){
+            System.out.println("Não encontrado querry! Exception: " + ex);
+        }
     }
-
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBEditar;
     private javax.swing.JButton jBExcluir;
     private javax.swing.JButton jBIncluir;
-    private javax.swing.JButton jBPesquisa;
+    private javax.swing.JButton jBPesquisar;
     private javax.swing.JButton jBVoltar;
-    private javax.swing.JComboBox<Object> jCBDisciplina;
-    private javax.swing.JComboBox<Object> jCBProfessor;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTextField jTFMatricula;
     private javax.swing.JTextField jTFNome;
-    private javax.swing.JTextField jTFTurno;
     private javax.swing.JTable jTTurma;
     // End of variables declaration//GEN-END:variables
 }

@@ -152,9 +152,7 @@ public class CrudAluno extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 8, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -184,65 +182,11 @@ public class CrudAluno extends javax.swing.JFrame {
         FormAluno formAluno = new FormAluno();
         
         Map<String, String> map = new HashMap<>();
-
-        map.put("matricula", "A171");
-        map.put("matriculaData", "10/16/4165");
-        map.put("matriculaSituacao", "Desativada");
-        map.put("dadosProfissao", "Programador");
-        map.put("dadosNome", "ABC");
-        map.put("dadosRg", "51654161");
-        map.put("dadosCPF", "132.456.479-56");
-        map.put("dadosEstadoCivil", "Casado");
-        map.put("dadosSexo", "Masculino");
-        map.put("dadosDataNascimento", "15/12/1956");
-        map.put("contatoEmail", "abc@abc.com");
-        map.put("contatoTelefone", "83 23561365");
-        map.put("enderecoLagradouro", "rua abc");
-        map.put("enderecoBairro", "abc");
-        map.put("enderecoCidade", "cidade abc");
-        map.put("enderecoEstado", "PB");
-        map.put("enderecoCep", "32629-523");
-        map.put("observacoes", "afawdw");
         
         formAluno.setDados(map);
         formAluno.setVisible(true);
     }//GEN-LAST:event_bAdicionarActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(CrudAluno.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(CrudAluno.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(CrudAluno.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(CrudAluno.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new CrudAluno().setVisible(true);
-                
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bAdicionar;
