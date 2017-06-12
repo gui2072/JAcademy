@@ -7,12 +7,10 @@ package br.unipe.cc.mpl3.jacademy.gui;
 
 import br.unipe.cc.mpl3.jacademy.fachada.FachadaTurma;
 import javax.swing.table.DefaultTableModel;
-import br.unipe.cc.mpl3.jacademy.modelo.Turma;
-import java.util.List;
 
 /**
  *
- * @author dan
+ * @author Nitai Charan
  */
 public class FormQueryTurma extends javax.swing.JFrame {
 
@@ -212,6 +210,14 @@ public class FormQueryTurma extends javax.swing.JFrame {
         }
     }
 
+    /**
+     * Imprime na jTTurma valores resgatados em persitencia.
+     * Valores correspondem aos atributos de Turma.
+     * 
+     * @see FachadaTurma
+     * @param query a ser realizada em persistencia
+     * @param tableModel modelo de tabela para referencia
+     */
     public void printTTurma(String query, DefaultTableModel tableModel) {
         //TODO add your handling code here:
         while (tableModel.getRowCount() != 0) {
