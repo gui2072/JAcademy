@@ -68,8 +68,6 @@ public class CrudLogin extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jTextField_ID = new javax.swing.JTextField();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -268,7 +266,7 @@ public class CrudLogin extends javax.swing.JFrame {
 
     private void bt_excluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_excluirActionPerformed
         // TODO add your handling code here:
-        if (jTable1.getSelectedRow() != 0){
+        if (jTable1.getSelectedRow() != -1){
             int resposta = JOptionPane.showConfirmDialog( null,"Confirmar exclusão?", "Exclusão",JOptionPane.YES_NO_OPTION);
 
             if (resposta == JOptionPane.YES_OPTION) {

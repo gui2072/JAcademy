@@ -27,6 +27,9 @@ public class CrudAluno extends javax.swing.JFrame {
         tAlunos.getColumnModel().getColumn(0).setPreferredWidth(70);
         tAlunos.getColumnModel().getColumn(1).setPreferredWidth(270);
         tAlunos.getColumnModel().getColumn(2).setPreferredWidth(110);
+        setTitle("Cadastro de Aluno");
+	setResizable(false);
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -48,7 +51,6 @@ public class CrudAluno extends javax.swing.JFrame {
         bVisualizar = new javax.swing.JButton();
         bVoltar = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Alunos");
 
         fBuscar.addActionListener(new java.awt.event.ActionListener() {

@@ -8,7 +8,6 @@ package br.unipe.cc.mpl3.jacademy.gui;
 import br.unipe.cc.mpl3.jacademy.fachada.FachadaDisciplina;
 import br.unipe.cc.mpl3.jacademy.fachada.FachadaProfessor;
 import br.unipe.cc.mpl3.jacademy.fachada.FachadaTurma;
-import br.unipe.cc.mpl3.jacademy.modelo.Turma;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -30,6 +29,10 @@ public class FormQueryTurma extends javax.swing.JFrame {
      */
     public FormQueryTurma() {
         initComponents();
+        
+        setTitle("Cadastro de Turmas");
+	setResizable(false);
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -52,8 +55,6 @@ public class FormQueryTurma extends javax.swing.JFrame {
         jTFNome = new javax.swing.JTextField();
         jCBProfessor = new javax.swing.JComboBox<>();
         jCBDisciplina = new javax.swing.JComboBox<>();
-
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jTTurma.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -85,6 +86,11 @@ public class FormQueryTurma extends javax.swing.JFrame {
         jBExcluir.setText("Excluir");
 
         jBVoltar.setText("Voltar");
+        jBVoltar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBVoltarActionPerformed(evt);
+            }
+        });
 
         jTFTurno.setText("Turno");
         jTFTurno.addActionListener(new java.awt.event.ActionListener() {
@@ -194,14 +200,19 @@ public class FormQueryTurma extends javax.swing.JFrame {
 
     private void jCBProfessorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCBProfessorActionPerformed
         // TODO add your handling code here:
-        DefaultTableModel tableModel = (DefaultTableModel) jTTurma.getModel();
-        Object professor = jCBProfessor.getSelectedItem();
-        printTTurma("SELECT * from turma where id in (SELECT idTurma FROM leciona where idProfessor in (SELECT matricula FROM professor where matricula = \'" + professor + "\'))", tableModel);  
+//        DefaultTableModel tableModel = (DefaultTableModel) jTTurma.getModel();
+//        Object professor = jCBProfessor.getSelectedItem();
+        //printTTurma("SELECT * from turma where id in (SELECT idTurma FROM leciona where idProfessor in (SELECT matricula FROM professor where matricula = \'" + professor + "\'))", tableModel);  
     }//GEN-LAST:event_jCBProfessorActionPerformed
 
     private void jCBDisciplinaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCBDisciplinaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jCBDisciplinaActionPerformed
+
+    private void jBVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBVoltarActionPerformed
+        // TODO add your handling code here:
+        dispose();
+    }//GEN-LAST:event_jBVoltarActionPerformed
     public void readJTTurma() {
         //TODO add your handling code here:
         DefaultTableModel tableModel = (DefaultTableModel) jTTurma.getModel();

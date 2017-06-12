@@ -19,6 +19,10 @@ public class FormQueryAlunosTurma extends javax.swing.JFrame {
      */
     public FormQueryAlunosTurma() {
         initComponents();
+        
+        setTitle("Cadastro de Alunos/Turma");
+	setResizable(false);
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -39,8 +43,6 @@ public class FormQueryAlunosTurma extends javax.swing.JFrame {
         jTFNome = new javax.swing.JTextField();
         jBVoltar = new javax.swing.JButton();
         jBPesquisar = new javax.swing.JButton();
-
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jTTurma.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {

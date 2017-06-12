@@ -96,8 +96,6 @@ public class FormProfessor extends javax.swing.JFrame {
         jComboBox_Sexo1 = new javax.swing.JComboBox<>();
         jTextField_CPF = new javax.swing.JTextField();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
         jTextField_buscaNome.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 jTextField_buscaNomeKeyPressed(evt);
@@ -509,7 +507,7 @@ public class FormProfessor extends javax.swing.JFrame {
 
     private void bt_editarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_editarActionPerformed
         // TODO add your handling code here:
-        if (Table_Professor.getSelectedRow() != 0){
+        if (Table_Professor.getSelectedRow() != -1){
             
             FachadaProfessor fachadaprofessor = new FachadaProfessor();          
             Professor professor = new Professor(); 

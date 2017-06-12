@@ -23,6 +23,10 @@ public class FormAluno extends javax.swing.JFrame {
      */
     public FormAluno() {
         initComponents();
+        
+        setTitle("Cadastro de Aluno");
+	setResizable(false);
+        setLocationRelativeTo(null);
     }
 
     public Map<String, String> getDados(){
@@ -124,8 +128,6 @@ public class FormAluno extends javax.swing.JFrame {
         buttonExcluir = new javax.swing.JButton();
         buttonFechar = new javax.swing.JButton();
         buttonImprimir = new javax.swing.JButton();
-
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Contatos", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Roboto", 1, 12))); // NOI18N
 
