@@ -10,7 +10,7 @@ import java.util.List;
  *
  * @author bruno
  */
-public class RepositorioProfessor extends Repositorio implements IRepositorioProfessor{
+public class RepositorioProfessor extends Repositorio implements IRepositorioProfessor {
 
     private DataBase database;
 
@@ -18,15 +18,29 @@ public class RepositorioProfessor extends Repositorio implements IRepositorioPro
     public boolean inserir(Professor professor) {
 
         boolean resultado = false;
+        String sql = "INSERT INTO professor(situacao,profissao,titularidade,nome,identidade,cpf,estado_civil,sexo,email,telefone,endereco,bairro,cidade,estado,cep,observacao) "
+                + "VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 
         try {
-            
-            String sql = "INSERT INTO Professor(observacao, telefone, email, data_nascimento, cpf, matricula, sexo, profissao, situacao, identidade, data_contratacao, estado_civil, titularidade, nome, endereco, cidade, cep, estado, bairro, uf) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
-            save(sql, professor.getobs(),professor.getTelefone(),professor.getEmail(),professor.getDataNasc(),professor.getCpf(),professor.getMatricula(),professor.getSexo(),professor.getProfissao(),professor.getsituacao(),professor.getRg(),professor.getdataContratacao(),professor.getEstadoCivil() ,professor.gettitularidade(),professor.getNome(),professor.getLogradouro(),professor.getCidade(),professor.getCep(),professor.getBairro(),professor.getId());
+            save(sql, professor.getsituacao(),
+                    professor.getProfissao(),
+                    professor.gettitularidade(),
+                    professor.getNome(),
+                    professor.getRg(),
+                    professor.getCpf(),
+                    professor.getEstadoCivil(),
+                    professor.getSexo(),
+                    professor.getEmail(),
+                    professor.getTelefone(),
+                    professor.getLogradouro(),
+                    professor.getBairro(),
+                    professor.getCidade(),
+                    professor.getEstadoCivil(),
+                    professor.getCep(),
+                    professor.getobs());
             resultado = true;
-            
-        } catch (SQLException e) {
-            
+        } catch (SQLException ex) {
+            System.out.println("Erro:" + ex.getMessage());
         }
 
         return resultado;
@@ -36,46 +50,43 @@ public class RepositorioProfessor extends Repositorio implements IRepositorioPro
     public boolean deletar(String id) {
 
         boolean resultado = false;
+        String sql = "delete from professor where matricula = ?";
 
         try {
-            
-            String sql = "delete from Professor where id = ?";
             delete(sql, id);
             resultado = true;
-
-        } catch (SQLException e) {
-            
+        } catch (SQLException ex) {
+            System.out.println("Erro:" + ex.getMessage());
         }
 
         return resultado;
     }
 
-
+    @Override
     public List<Professor> getProfessores() {
 
         List<Professor> professores = new ArrayList<Professor>();
 
         try {
-
             database = new DataBase();
-            String sql = "SELECT id, nome, cpf, matricula FROM Professor order by id";
+            String sql = "SELECT nome, cpf, matricula, telefone FROM professor order by matricula";
             ResultSet rs = database.getStatement().executeQuery(sql);
 
             while (rs.next()) {
                 Professor professor = new Professor();
 
-                professor.setId(rs.getInt("id"));
-                professor.setMatricula(rs.getInt("matricula"));
                 professor.setNome(rs.getString("nome"));
                 professor.setCpf(rs.getString("cpf"));
-
+                professor.setMatricula(rs.getInt("matricula"));
+                professor.setTelefone(rs.getString("telefone"));
+                
                 professores.add(professor);
             }
 
             database.close();
 
-        } catch (SQLException e) {
-            
+        } catch (SQLException ex) {
+            System.out.println("Erro:" + ex.getMessage());
         }
 
         return professores;
@@ -85,42 +96,103 @@ public class RepositorioProfessor extends Repositorio implements IRepositorioPro
     public boolean atualizar(Professor professor) {
 
         boolean resultado = false;
-        
-        try {
+        String sql = "update professor set (situacao = ?,profissao = ?,titularidade = ?,nome = ?,identidade = ?,cpf = ?,estado_civil = ?,sexo = ?,email = ?,telefone = ?,endereco = ?,bairro = ?,cidade = ?,estado = ?,cep = ?,observacao = ?) "+ 
+                     " matricula = \'" + professor.getMatricula() + "\'";
 
-            String sql = "update Professor set obs = ?"
-                    + "Telefone = ?,"
-                    + "Email = ?"
-                    + "data_nascimento = ?"
-                    + "Telefone = ?"
-                    + "matricula = ?"
-                    + "sexo = ?"
-                    + "profissao = ?"
-                    + "situacao = ?"
-                    + "rg = ?"
-                    + "data_contratacao = ?"
-                    + "estadocivil = ?"
-                    + "titularidade = ?,"
-                    + "nome = ?"
-                    + "endereco = ?"
-                    + "cidade = ?"
-                    + "cep = ?"
-                    + "bairro = ?"
-                    + "where id = ?";
-    
-            update(sql, professor.getobs(),professor.getTelefone(),professor.getEmail(),professor.getDataNasc(),professor.getCpf(),professor.getMatricula(),professor.getSexo(),professor.getProfissao(),professor.getsituacao(),professor.getRg(),professor.getdataContratacao(),professor.getEstadoCivil() ,professor.gettitularidade(),professor.getNome(),professor.getLogradouro(),professor.getCidade(),professor.getCep(),professor.getBairro(),professor.getId());
+        try {
+            update(sql, professor.getsituacao(),
+                    professor.getProfissao(),
+                    professor.gettitularidade(),
+                    professor.getNome(),
+                    professor.getRg(),
+                    professor.getCpf(),
+                    professor.getEstadoCivil(),
+                    professor.getSexo(),
+                    professor.getDataNasc(),
+                    professor.getEmail(),
+                    professor.getTelefone(),
+                    professor.getLogradouro(),
+                    professor.getBairro(),
+                    professor.getCidade(),
+                    professor.getEstadoCivil(),
+                    professor.getCep(),
+                    professor.getobs());
+            
             resultado = true;
         } catch (SQLException ex) {
-            
+            System.out.println("Erro:" + ex.getMessage());
         }
-        
+
         return resultado;
     }
 
     @Override
     public Professor getProfessor(String id) {
-        
-        Professor professor = new Professor();            
+
+        Professor professor = new Professor();
+
+        try {
+            database = new DataBase();
+            String sql = "SELECT * FROM professor where matricula = \'" + id + "\' order by matricula";
+            ResultSet rs = database.getStatement().executeQuery(sql);
+
+            if(rs != null && rs.next()){
+                
+                professor.setMatricula(rs.getInt("matricula"));
+                professor.setSituacao(rs.getString("situacao"));
+                professor.setProfissao(rs.getString("profissao"));
+                professor.setTitularidade(rs.getString("titularidade"));
+                professor.setNome(rs.getString("nome"));
+                professor.setRg(rs.getString("identidade"));
+                professor.setCpf(rs.getString("cpf"));
+                professor.setEstadoCivil(rs.getString("estado_civil"));
+                professor.setSexo(rs.getString("sexo"));
+                professor.setEmail(rs.getString("email"));
+                professor.setTelefone(rs.getString("telefone"));
+                professor.setLogradouro(rs.getString("endereco"));
+                professor.setBairro(rs.getString("bairro"));
+                professor.setCidade(rs.getString("cidade"));
+                professor.setEstado(rs.getString("estado"));         
+                professor.setCep(rs.getString("cep"));
+                professor.setObservacao(rs.getString("observacao"));
+            }
+            
+            database.close();
+
+        } catch (SQLException ex) {
+            System.out.println("Erro:" + ex.getMessage());
+        }
+
         return professor;
+    }
+    
+    @Override
+    public List<Professor> busca(String desc) {
+
+        List<Professor> professores = new ArrayList<Professor>();
+
+        try {
+            database = new DataBase();
+            String sql = "SELECT nome, cpf, matricula FROM professor WHERE nome LIKE '%" + desc + "%' order by matricula";
+     
+            ResultSet rs = database.getStatement().executeQuery(sql);
+
+            while (rs.next()) {
+                Professor professor = new Professor();
+
+                professor.setNome(rs.getString("nome"));
+                professor.setCpf(rs.getString("cpf"));
+                professor.setMatricula(rs.getInt("matricula"));
+
+                professores.add(professor);
+            }
+
+            database.close();
+
+        } catch (SQLException ex) {
+            System.out.println("Erro:" + ex.getMessage());
+        }
+
+        return professores;
     }
 }

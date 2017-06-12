@@ -14,4 +14,5 @@ public interface IRepositorioProfessor {
     public boolean atualizar(Professor professor);
     public boolean deletar(String id); 
     public Professor getProfessor(String id);
+    public List<Professor> busca(String desc);
 }
