@@ -55,9 +55,4 @@ public class Turma {
     public static Set<Turma> getDadoTurma(String query) {
         return RepositorioTurma.getDadoTurmas(query);
     }
-
-    @Override
-    public String toString() {
-        return "Turma{" + "nome=" + nome + '}';
-    }
 }
