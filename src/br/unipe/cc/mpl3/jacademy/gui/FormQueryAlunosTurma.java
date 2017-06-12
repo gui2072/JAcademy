@@ -79,10 +79,20 @@ public class FormQueryAlunosTurma extends javax.swing.JFrame {
         });
 
         jTFNome.setText("Nome");
+        jTFNome.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTFNomeActionPerformed(evt);
+            }
+        });
 
         jBVoltar.setText("Voltar");
 
         jBPesquisar.setText("Pesquisar");
+        jBPesquisar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBPesquisarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -131,12 +141,42 @@ public class FormQueryAlunosTurma extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jTFMatriculaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTFMatriculaActionPerformed
-        
+        //TODO add your handling code here:
+        DefaultTableModel tableModel = (DefaultTableModel) jTTurma.getModel();
+        String matricula = jTFMatricula.getText();
+        if (matricula != null && matricula != "") {
+            printTTurma("SELECT * FROM aluno WHERE matricula = \'" + matricula + "\'", tableModel);
+        } else {
+            System.out.println("Nulo");
+        }
     }//GEN-LAST:event_jTFMatriculaActionPerformed
 
     private void jBIncluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBIncluirActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jBIncluirActionPerformed
+
+    private void jTFNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTFNomeActionPerformed
+        //TODO add your handling code here:
+        DefaultTableModel tableModel = (DefaultTableModel) jTTurma.getModel();
+        String nome = jTFNome.getText();
+        if (nome != null && nome != "") {
+            printTTurma("SELECT * FROM aluno WHERE nome = \'" + nome + "\'", tableModel);
+        } else {
+            System.out.println("Nulo");
+        }
+    }//GEN-LAST:event_jTFNomeActionPerformed
+
+    private void jBPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBPesquisarActionPerformed
+        //TODO add your handling code here:
+        DefaultTableModel tableModel = (DefaultTableModel) jTTurma.getModel();
+        String nome = jTFNome.getText();
+        String matricula = jTFMatricula.getText();
+        if (nome != null && nome != "") {
+            printTTurma("SELECT * FROM aluno WHERE nome = \'" + nome + "\' and matricula =  \'" + matricula + "\'", tableModel);
+        } else {
+            System.out.println("Nulo");
+        }
+    }//GEN-LAST:event_jBPesquisarActionPerformed
 
     /**
      * @param args the command line arguments

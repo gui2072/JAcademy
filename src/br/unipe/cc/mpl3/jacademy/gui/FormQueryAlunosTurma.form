@@ -150,6 +150,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Nome"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTFNomeActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="jBVoltar">
       <Properties>
@@ -160,6 +163,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Pesquisar"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBPesquisarActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>
