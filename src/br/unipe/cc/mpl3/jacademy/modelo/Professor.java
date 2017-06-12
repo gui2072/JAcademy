@@ -1,5 +1,7 @@
 package br.unipe.cc.mpl3.jacademy.modelo;
-import java.util.Date;
+
+import br.unipe.cc.mpl3.jacademy.persistencia.RepositorioProfessor;
+import java.util.List;
 
 /**
  *
@@ -7,15 +9,11 @@ import java.util.Date;
  */
 
 public class Professor extends Pessoa {
-    private Date dataContratacao;
+
     private String situacao, obs, titularidade;
     
     public Professor(){
         
-    }
-
-    public Date getdataContratacao() {
-        return dataContratacao;
     }
 
     public String getsituacao() {
@@ -30,20 +28,29 @@ public class Professor extends Pessoa {
         return titularidade;
     }
 
-    public void setdataContratacao(Date DataContratacao) {
-        this.dataContratacao = dataContratacao;
-    }
-
-    public void setSituacao(String Situacao) {
+    public void setSituacao(String situacao) {
         this.situacao = situacao;
     }
 
-    public void setObs(String Obs) {
+    public void setObs(String obs) {
         this.obs = obs;
     }
     
-    public void setTitularidade(String Titularidade) {
+    public void setTitularidade(String titularidade) {
         this.titularidade = titularidade;
     }
     
+    public static List<Professor> getProfessores(){
+        
+        RepositorioProfessor repositorioProfessor = new RepositorioProfessor();
+        
+        return repositorioProfessor.getProfessores();
+    }
+    
+    public static List<Professor> busca(String desc){
+        
+        RepositorioProfessor repositorioProfessor = new RepositorioProfessor();
+        
+        return repositorioProfessor.busca(desc);
+    }
 }
