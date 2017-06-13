@@ -6,53 +6,124 @@
 package br.unipe.cc.mpl3.jacademy.persistencia;
 
 import br.unipe.cc.mpl3.jacademy.modelo.Aluno;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
  * @author paulo
  */
-public class RepositorioAluno{
-    /**
-     * Pega atributos de Aluno salvos no BD.
-     * Método servira apenas para transportar informações contidas no 
-     * BD referente a Aluno.
-     * Possibilita de query's  na tabela 'aluno', somente necessário passar por
-     * parametro (SELECT * FROM aluno WHERE query).
-     * 
-     * 
-     * @param query
-     * @return Resultado da query realizado no BD em um conjunto Set de Aluno.
-     */   
+public class RepositorioAluno implements IRepositorioAluno{
     
-    public static Set<Aluno> getDadoAluno(String query) {
-        Set<Aluno> alunos = new HashSet<>();
+    private boolean execute(String  sql, Object... parametros) throws SQLException{
+        DataBase database = new DataBase();
+        PreparedStatement preparedStatement = database.getConnection().prepareStatement(sql);
 
+        for (int i = 0; i < parametros.length; i++) {
+            preparedStatement.setObject(i + 1, parametros[i]);
+        }
+
+        boolean retorno = preparedStatement.execute();
+        preparedStatement.close();
+        database.close();
+        return retorno;
+    }
+    
+    @Override
+    public boolean insert(Aluno aluno){
+        String query = "INSERT INTO aluno(nome, cpf, profissao, email, telefone, endereco, bairro, cidade, estado, cep, observacao) VALUES(?,?,?,?,?,?,?,?,?,?,?,?)";
+        try {
+            return execute(query, aluno.getNome(), aluno.getCpf(), aluno.getProfissao(), aluno.getEmail(), aluno.getTelefone(), aluno.getLogradouro(), aluno.getBairro(), aluno.getCidade(), aluno.getEstado(), aluno.getCep(), aluno.getObservacao());
+        } catch (SQLException ex) {
+            return false;
+        }
+    }
+    
+    @Override
+    public boolean update(Aluno aluno){
+        String query = "UPDATE aluno SET(nome=?, cpf=?, profissao=?, email=?, telefone=?, endereco=?, bairro=?, cidade=?, estado=?, cep=?, observacao=?) WHERE matricula=?";
+        try {
+            return execute(query,  aluno.getNome(), aluno.getCpf(), aluno.getProfissao(), aluno.getEmail(), aluno.getTelefone(), aluno.getLogradouro(), aluno.getBairro(), aluno.getCidade(), aluno.getEstado(), aluno.getCep(), aluno.getObservacao(), aluno.getMatricula());
+        } catch (SQLException ex) {
+            return false;
+        }
+    }
+    
+    @Override
+    public boolean remove(String matricula){
+        String query = "DELETE FROM aluno WHERE matricula = ?";
+        try {
+            return execute(query, matricula);
+        } catch (SQLException ex) {
+            return false;
+        }
+    }
+    
+    @Override
+    public List<Aluno> list(String busca){
+        List<Aluno> lista = new ArrayList<>();
         try {
             DataBase database = new DataBase();
-            ResultSet resultSet = database.getStatement().executeQuery(query);
-            while (resultSet.next()) {
+            ResultSet resultSet = database.getStatement().executeQuery("SELECT * FROM aluno WHERE nome LIKE \'" + busca + "%\'");
+
+            while(resultSet.next()){
                 Aluno aluno = new Aluno();
-                aluno.setSexo(resultSet.getString("sexo"));
-                aluno.setTelefone(resultSet.getString("telefone"));
-                aluno.setProfissao(resultSet.getString("profissao"));
-                aluno.setObservacao(resultSet.getString("observacao"));
-                aluno.setEmail(resultSet.getString("email"));
-                aluno.setRg(resultSet.getString("identidade"));
+                
+                aluno.setMatricula(resultSet.getInt("matricula"));
                 aluno.setNome(resultSet.getString("nome"));
-                aluno.setSituacao(resultSet.getString("situacao"));
-                aluno.setEstadoCivil(resultSet.getString("estado_civil"));
-                aluno.setMatricula(resultSet.getInt("Matricula"));
-                alunos.add(aluno);
+                aluno.setCpf(resultSet.getString("cpf"));
+                aluno.setProfissao(resultSet.getString("profissao"));
+                aluno.setEmail(resultSet.getString("email"));
+                aluno.setTelefone(resultSet.getString("telefone"));
+                aluno.setLogradouro(resultSet.getString("endereco"));
+                aluno.setBairro(resultSet.getString("bairro"));
+                aluno.setCidade(resultSet.getString("cidade"));
+                aluno.setEstado(resultSet.getString("estado"));
+                aluno.setCep(resultSet.getString("cep"));
+                aluno.setObservacao(resultSet.getString("observacao"));
+                
+                lista.add(aluno);
             }
-            database.close();
-            database.getStatement().close(); // Em avaliação
+
             resultSet.close();
-        } catch (SQLException e) {
+            database.close();
+        } catch (SQLException ex) {
         }
-        return alunos;
+        return lista;    
+    }
+    
+    @Override
+    public Aluno get(String matricula){
+        Aluno aluno = new Aluno();
+        try {
+            DataBase database = new DataBase();
+            PreparedStatement preparedStatement = database.getConnection().prepareStatement("SELECT * FROM aluno WHERE matricula = ?");
+            preparedStatement.setObject(1, matricula);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            
+            while(resultSet.next()){
+                aluno.setMatricula(resultSet.getInt("matricula"));
+                aluno.setNome(resultSet.getString("nome"));
+                aluno.setCpf(resultSet.getString("cpf"));
+                aluno.setProfissao(resultSet.getString("profissao"));
+                aluno.setEmail(resultSet.getString("email"));
+                aluno.setTelefone(resultSet.getString("telefone"));
+                aluno.setLogradouro(resultSet.getString("endereco"));
+                aluno.setBairro(resultSet.getString("bairro"));
+                aluno.setCidade(resultSet.getString("cidade"));
+                aluno.setEstado(resultSet.getString("estado"));
+                aluno.setCep(resultSet.getString("cep"));
+                aluno.setObservacao(resultSet.getString("observacao"));
+            }
+
+            resultSet.close();
+            preparedStatement.close();
+            database.close();
+        } catch (SQLException ex) {
+        }
+        return aluno;
     }
 }

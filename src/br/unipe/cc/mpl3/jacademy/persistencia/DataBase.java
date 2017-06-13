@@ -37,6 +37,7 @@ public class DataBase {
     }
 
     public void close() throws SQLException{
+        this.statement.close();
         this.connection.close();
     }
 }
