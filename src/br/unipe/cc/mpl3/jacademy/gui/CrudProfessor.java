@@ -516,7 +516,6 @@ public class CrudProfessor extends javax.swing.JFrame {
             jTextField_Mat.setText(Table_Professor.getValueAt(Table_Professor.getSelectedRow(), 0).toString());
             jTextField_profissao.setText(professor.getNome());
             jTextField_nome.setText(professor.getNome());
-            jTextField_rg.setText(professor.getRg());
             jTextField_CPF.setText(professor.getCpf());
             jTextField_email.setText(professor.getEmail());
             jTextField_tel.setText(professor.getTelefone());
@@ -526,11 +525,6 @@ public class CrudProfessor extends javax.swing.JFrame {
             jTextField_estado.setText(professor.getEstado());
             jTextField_cep.setText(professor.getCep());
             jTextField_observacao.setText(professor.getObs());
-            
-            if (professor.getEstadoCivil() == "Sol")
-                 jComboBox_EstadoCivil.setSelectedIndex(0);
-            else
-                jComboBox_EstadoCivil.setSelectedIndex(1);
             
             if (professor.getSexo() == "Ma")
                 jComboBox_Sexo1.setSelectedIndex(0);

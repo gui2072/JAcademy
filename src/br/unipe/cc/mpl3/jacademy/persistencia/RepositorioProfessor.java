@@ -20,17 +20,15 @@ public class RepositorioProfessor extends Repositorio implements IRepositorioPro
     public boolean inserir(Professor professor) {
 
         boolean resultado = false;
-        String sql = "INSERT INTO professor(situacao,profissao,titularidade,nome,identidade,cpf,estado_civil,sexo,email,telefone,endereco,bairro,cidade,estado,cep,observacao) "
-                + "VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+        String sql = "INSERT INTO professor(situacao,profissao,titularidade,nome,cpf,sexo,email,telefone,endereco,bairro,cidade,estado,cep,observacao) "
+                + "VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 
         try {
             save(sql, professor.getSituacao(),
                     professor.getProfissao(),
                     professor.getTitularidade(),
                     professor.getNome(),
-                    professor.getRg(),
                     professor.getCpf(),
-                    professor.getEstadoCivil(),
                     professor.getSexo(),
                     professor.getEmail(),
                     professor.getTelefone(),
@@ -82,9 +80,7 @@ public class RepositorioProfessor extends Repositorio implements IRepositorioPro
                 professor.setProfissao(rs.getString("profissao"));
                 professor.setTitularidade(rs.getString("titularidade"));
                 professor.setNome(rs.getString("nome"));
-                professor.setRg(rs.getString("identidade"));
                 professor.setCpf(rs.getString("cpf"));
-                professor.setEstadoCivil(rs.getString("estado_civil"));
                 professor.setSexo(rs.getString("sexo"));
                 professor.setEmail(rs.getString("email"));
                 professor.setTelefone(rs.getString("telefone"));
@@ -109,7 +105,7 @@ public class RepositorioProfessor extends Repositorio implements IRepositorioPro
     public boolean atualizar(Professor professor) {
 
         boolean resultado = false;
-        String sql = "update professor set (situacao = ?,profissao = ?,titularidade = ?,nome = ?,identidade = ?,cpf = ?,estado_civil = ?,sexo = ?,email = ?,telefone = ?,endereco = ?,bairro = ?,cidade = ?,estado = ?,cep = ?,observacao = ?) "
+        String sql = "update professor set (situacao = ?,profissao = ?,titularidade = ?,nome = ?,cpf = ?,sexo = ?,email = ?,telefone = ?,endereco = ?,bairro = ?,cidade = ?,estado = ?,cep = ?,observacao = ?) "
                 + " matricula = \'" + professor.getMatricula() + "\'";
 
         try {
@@ -117,9 +113,7 @@ public class RepositorioProfessor extends Repositorio implements IRepositorioPro
                     professor.getProfissao(),
                     professor.getTitularidade(),
                     professor.getNome(),
-                    professor.getRg(),
                     professor.getCpf(),
-                    professor.getEstadoCivil(),
                     professor.getSexo(),
                     professor.getDataNasc(),
                     professor.getEmail(),
@@ -160,9 +154,7 @@ public class RepositorioProfessor extends Repositorio implements IRepositorioPro
                 professor.setProfissao(rs.getString("profissao"));
                 professor.setTitularidade(rs.getString("titularidade"));
                 professor.setNome(rs.getString("nome"));
-                professor.setRg(rs.getString("identidade"));
                 professor.setCpf(rs.getString("cpf"));
-                professor.setEstadoCivil(rs.getString("estado_civil"));
                 professor.setSexo(rs.getString("sexo"));
                 professor.setEmail(rs.getString("email"));
                 professor.setTelefone(rs.getString("telefone"));
