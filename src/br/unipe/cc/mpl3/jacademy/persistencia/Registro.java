@@ -7,6 +7,10 @@ package br.unipe.cc.mpl3.jacademy.persistencia;
 
 import br.unipe.cc.mpl3.jacademy.modelo.Disciplina;
 import br.unipe.cc.mpl3.jacademy.modelo.Professor;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 
 /**
  *
@@ -26,11 +30,37 @@ public class Registro implements IRegistro {
     }
 
     public boolean registroDisciplina() {
-        RepositorioDisciplina disciplinas = new RepositorioDisciplina();
         Boolean resultado = false;
-        for (Disciplina disciplina : new RepositorioDisciplina().getDadosDisciplina()) {
-
+        File arquivo = new File("relatorio.txt");
+        FileWriter fw = null;
+        try {
+            fw = new FileWriter(arquivo);
+        } catch (IOException ex) {
+            System.out.println(ex);
+            ex.printStackTrace();
         }
+        BufferedWriter bw = new BufferedWriter(fw);
+
+        for (Disciplina disciplina : new RepositorioDisciplina().getDadosDisciplina()) {
+            try {
+                bw.write("ID: " + disciplina.getId());
+                bw.write(" Nome: " + disciplina.getNome());
+                bw.write(" Descrição: " + disciplina.getDescricao());
+                bw.newLine();
+            } catch (IOException ex) {
+                System.out.println(ex);
+                ex.printStackTrace();
+            }
+        }
+        try {
+            bw.close();
+            fw.close();
+            resultado = true;
+        } catch (IOException ex) {
+            System.out.println(ex);
+            ex.printStackTrace();
+        }
+
         return resultado;
     }
 
@@ -52,7 +82,6 @@ public class Registro implements IRegistro {
             professor.getEstado();
             professor.getCep();
             professor.getObservacao();
-
         }
         return resultado;
     }
