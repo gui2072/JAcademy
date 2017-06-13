@@ -1,8 +1,6 @@
 package br.unipe.cc.mpl3.jacademy.gui;
 
 import br.unipe.cc.mpl3.jacademy.fachada.FachadaAluno;
-import br.unipe.cc.mpl3.jacademy.fachada.FachadaProfessor;
-import br.unipe.cc.mpl3.jacademy.modelo.Professor;
 import java.util.HashMap;
 import java.util.Map;
 import javax.swing.JOptionPane;
@@ -465,24 +463,19 @@ public class CrudAluno extends javax.swing.JFrame {
     private void bt_editarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_editarActionPerformed
         // TODO add your handling code here:
         if (tAlunos.getSelectedRow() != 0){
+            Map<String, String> dados = FachadaAluno.carregar(tAlunos.getValueAt(tAlunos.getSelectedRow(), 0).toString());
 
-            FachadaProfessor fachadaprofessor = new FachadaProfessor();
-            Professor professor = new Professor();
-            professor = fachadaprofessor.getProfessor(tAlunos.getValueAt(tAlunos.getSelectedRow(), 0).toString());
-
-            fMatricula.setText(tAlunos.getValueAt(tAlunos.getSelectedRow(), 0).toString());
-            fProfissao.setText(professor.getNome());
-            fNome.setText(professor.getNome());
-            jTextField_CPF.setText(professor.getCpf());
-            fEmail.setText(professor.getEmail());
-            fTelefone.setText(professor.getTelefone());
-            fRua.setText(professor.getLogradouro());
-            fBairro.setText(professor.getBairro());
-            fCidade.setText(professor.getCidade());
-            fEstado.setText(professor.getEstado());
-            fCep.setText(professor.getCep());
-            fObservacao.setText(professor.getObs());
-
+            fNome.setText(dados.get("nome"));
+            jTextField_CPF.setText(dados.get("cpf"));
+            fProfissao.setText(dados.get("profissao"));
+            fTelefone.setText(dados.get("telefone"));
+            fRua.setText(dados.get("logradouro"));
+            fBairro.setText(dados.get("bairro"));
+            fCep.setText(dados.get("cep"));
+            fEstado.setText(dados.get("estado"));
+            fCidade.setText(dados.get("cidade"));
+            fEmail.setText(dados.get("email"));
+            fObservacao.setText(dados.get("observacao"));
 
             jTabbedPane1.setEnabledAt(1, true);
             jTabbedPane1.setEnabledAt(0, false);
