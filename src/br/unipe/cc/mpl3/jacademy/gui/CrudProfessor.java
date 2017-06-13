@@ -630,7 +630,7 @@ public class CrudProfessor extends javax.swing.JFrame {
 
     private void bt_excluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_excluirActionPerformed
         // TODO add your handling code here:
-        if (Table_Professor.getSelectedRow() != 0){        
+        if (Table_Professor.getSelectedRow() != -1){        
             int resposta = JOptionPane.showConfirmDialog( null,"Confirmar exclusão?", "Exclusão",JOptionPane.YES_NO_OPTION);
             
             if (resposta == JOptionPane.YES_OPTION) {            

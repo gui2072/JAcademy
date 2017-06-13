@@ -256,6 +256,7 @@ public class CrudLogin extends javax.swing.JFrame {
     private void bt_incluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_incluirActionPerformed
         // TODO add your handling code here:
 
+        jTextField_ID.setText("");
         jTextField_Usuario.setText("");
         jTextField_Senha.setText("");
 
