@@ -6,6 +6,7 @@
 package br.unipe.cc.mpl3.jacademy.persistencia;
 
 import br.unipe.cc.mpl3.jacademy.modelo.Aluno;
+import br.unipe.cc.mpl3.jacademy.util.DriveException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -18,7 +19,7 @@ import java.util.List;
  */
 public class RepositorioAluno implements IRepositorioAluno{
     
-    private boolean execute(String  sql, Object... parametros) throws SQLException{
+    private boolean execute(String  sql, Object... parametros) throws SQLException, DriveException{
         DataBase database = new DataBase();
         PreparedStatement preparedStatement = database.getConnection().prepareStatement(sql);
 
@@ -39,6 +40,8 @@ public class RepositorioAluno implements IRepositorioAluno{
             return execute(query, aluno.getNome(), aluno.getCpf(), aluno.getProfissao(), aluno.getEmail(), aluno.getTelefone(), aluno.getLogradouro(), aluno.getBairro(), aluno.getCidade(), aluno.getEstado(), aluno.getCep(), aluno.getObservacao());
         } catch (SQLException ex) {
             return false;
+        } catch (DriveException ex) {
+            return false;
         }
     }
     
@@ -49,6 +52,8 @@ public class RepositorioAluno implements IRepositorioAluno{
             return execute(query,  aluno.getNome(), aluno.getCpf(), aluno.getProfissao(), aluno.getEmail(), aluno.getTelefone(), aluno.getLogradouro(), aluno.getBairro(), aluno.getCidade(), aluno.getEstado(), aluno.getCep(), aluno.getObservacao(), aluno.getMatricula());
         } catch (SQLException ex) {
             return false;
+        } catch (DriveException ex) {
+            return false;
         }
     }
     
@@ -58,6 +63,8 @@ public class RepositorioAluno implements IRepositorioAluno{
         try {
             return execute(query, matricula);
         } catch (SQLException ex) {
+            return false;
+        } catch (DriveException ex) {
             return false;
         }
     }
@@ -91,6 +98,9 @@ public class RepositorioAluno implements IRepositorioAluno{
             resultSet.close();
             database.close();
         } catch (SQLException ex) {
+            return null;
+        } catch (DriveException ex) {
+            return null;
         }
         return lista;    
     }
@@ -122,7 +132,11 @@ public class RepositorioAluno implements IRepositorioAluno{
             resultSet.close();
             preparedStatement.close();
             database.close();
+       
         } catch (SQLException ex) {
+            return null;
+        } catch (DriveException ex) {
+            return null;
         }
         return aluno;
     }

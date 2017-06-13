@@ -3,6 +3,8 @@ nbproject/
 build/
 config/dataBase.properties
 
+src/br/unipe/cc/mpl3/jacademy/gui/CrudAluno1.*
+
 *.class
 
 build.xml

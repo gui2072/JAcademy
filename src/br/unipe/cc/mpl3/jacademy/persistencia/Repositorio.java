@@ -1,5 +1,6 @@
 package br.unipe.cc.mpl3.jacademy.persistencia;
 
+import br.unipe.cc.mpl3.jacademy.util.DriveException;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
@@ -14,6 +15,8 @@ public abstract class Repositorio {
         try {
             database = new DataBase();
         } catch (SQLException ex) {
+            System.out.println("Erro:" + ex.getMessage());
+        } catch (DriveException ex) {
         }
     }
 

@@ -6,6 +6,7 @@
 package br.unipe.cc.mpl3.jacademy.persistencia;
 
 import br.unipe.cc.mpl3.jacademy.modelo.Turma;
+import br.unipe.cc.mpl3.jacademy.util.DriveException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.HashSet;
@@ -44,6 +45,7 @@ public class RepositorioTurma {
             database.getStatement().close(); // Em avaliação
             resultSet.close();
         } catch (SQLException ex) {
+        }catch (DriveException ex) {
         }
         return dados;
     }
