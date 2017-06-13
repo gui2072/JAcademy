@@ -75,8 +75,8 @@ public class Disciplina {
      * @param query
      * @return Resultado da query realizado no BD em conjunto Set de Disciplina
     */
-    public static Set<Disciplina> getDadoDisciplina(String query) {
-        return RepositorioDisciplina.getDadoDisciplina(query);
+    public Set<Disciplina> getDadoDisciplina() {
+        return new RepositorioDisciplina().getDadosDisciplina();
     }
 
 }

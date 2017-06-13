@@ -23,13 +23,13 @@ import java.util.Set;
  * @param query
  * @return Resultado da query realizado no BD em um conjunto Set de Disciplina
  */
-public class RepositorioDisciplina {
+public class RepositorioDisciplina implements IRepositorioDisciplina{
 
-    public static Set<Disciplina> getDadoDisciplina(String query) {
+    public Set<Disciplina> getDadosDisciplina() {
         Set<Disciplina> dados = new HashSet<>();
         try {
             DataBase database = new DataBase();
-            ResultSet resultSet = database.getStatement().executeQuery(query);
+            ResultSet resultSet = database.getStatement().executeQuery("SELECT * FROM disciplina");
             try {
                 throw new QueryNullException(resultSet);
             } catch (QueryNullException ex) {
@@ -39,9 +39,6 @@ public class RepositorioDisciplina {
                 disciplina.setId(resultSet.getInt("id"));
                 disciplina.setNome(resultSet.getString("nome"));
                 disciplina.setDescricao(resultSet.getString("descricao"));
-                disciplina.setSituacao(resultSet.getString("situacao"));
-                disciplina.setSemestre(resultSet.getString("semestre"));
-                disciplina.setObservacao(resultSet.getString("observacao"));
                 dados.add(disciplina);
             }
             database.close();
