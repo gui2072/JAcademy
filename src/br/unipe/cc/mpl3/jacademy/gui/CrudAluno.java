@@ -481,7 +481,7 @@ public class CrudAluno extends javax.swing.JFrame {
             fCidade.setText(professor.getCidade());
             fEstado.setText(professor.getEstado());
             fCep.setText(professor.getCep());
-            fObservacao.setText(professor.getobs());
+            fObservacao.setText(professor.getObs());
 
 
             jTabbedPane1.setEnabledAt(1, true);

@@ -1,6 +1,7 @@
 package br.unipe.cc.mpl3.jacademy.modelo;
 
 import br.unipe.cc.mpl3.jacademy.persistencia.RepositorioProfessor;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -11,31 +12,28 @@ import java.util.List;
 public class Professor extends Pessoa {
 
     private String situacao, obs, titularidade;
-    
-    public Professor(){
-        
-    }
 
-    public String getsituacao() {
+
+    public String getSituacao() {
         return situacao;
-    }
-
-    public String getobs() {
-        return obs;
-    }
-    
-        public String gettitularidade() {
-        return titularidade;
     }
 
     public void setSituacao(String situacao) {
         this.situacao = situacao;
     }
 
+    public String getObs() {
+        return obs;
+    }
+
     public void setObs(String obs) {
         this.obs = obs;
     }
-    
+
+    public String getTitularidade() {
+        return titularidade;
+    }
+
     public void setTitularidade(String titularidade) {
         this.titularidade = titularidade;
     }

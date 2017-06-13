@@ -10,5 +10,7 @@ package br.unipe.cc.mpl3.jacademy.persistencia;
  * @author dan
  */
 public interface IRegistro {
+    public boolean registroProfessor();
+    public boolean registroDisciplina();
     
 }
