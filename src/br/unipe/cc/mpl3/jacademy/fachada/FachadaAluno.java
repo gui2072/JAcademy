@@ -17,6 +17,7 @@ import java.util.Map;
  * @author paulo
  */
 public class FachadaAluno {
+    
     public static List<Object> buscar(String busca){
         List<Object> lista = new ArrayList<>();
         for (Aluno aluno : ServiceAluno.listar(busca)) {

@@ -17,7 +17,7 @@ import java.util.List;
  *
  * @author paulo
  */
-public class RepositorioAluno implements IRepositorioAluno{
+public class RepositorioAluno{
     
     private boolean execute(String  sql, Object... parametros) throws SQLException, DriveException{
         DataBase database = new DataBase();
@@ -33,7 +33,6 @@ public class RepositorioAluno implements IRepositorioAluno{
         return retorno;
     }
     
-    @Override
     public boolean insert(Aluno aluno){
         String query = "INSERT INTO aluno(nome, cpf, profissao, email, telefone, endereco, bairro, cidade, estado, cep, observacao) VALUES(?,?,?,?,?,?,?,?,?,?,?,?)";
         try {
@@ -45,7 +44,6 @@ public class RepositorioAluno implements IRepositorioAluno{
         }
     }
     
-    @Override
     public boolean update(Aluno aluno){
         String query = "UPDATE aluno SET(nome=?, cpf=?, profissao=?, email=?, telefone=?, endereco=?, bairro=?, cidade=?, estado=?, cep=?, observacao=?) WHERE matricula=?";
         try {
@@ -57,7 +55,6 @@ public class RepositorioAluno implements IRepositorioAluno{
         }
     }
     
-    @Override
     public boolean remove(String matricula){
         String query = "DELETE FROM aluno WHERE matricula = ?";
         try {
@@ -69,8 +66,7 @@ public class RepositorioAluno implements IRepositorioAluno{
         }
     }
     
-    @Override
-    public List<Aluno> list(String busca){
+    public static List<Aluno> list(String busca){
         List<Aluno> lista = new ArrayList<>();
         try {
             DataBase database = new DataBase();
@@ -105,7 +101,6 @@ public class RepositorioAluno implements IRepositorioAluno{
         return lista;    
     }
     
-    @Override
     public Aluno get(String matricula){
         Aluno aluno = new Aluno();
         try {

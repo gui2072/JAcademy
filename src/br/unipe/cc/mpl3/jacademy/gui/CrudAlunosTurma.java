@@ -192,7 +192,7 @@ public class CrudAlunosTurma extends javax.swing.JFrame {
             tableModel.removeRow(0);
         }
         try{
-            for (Object item : FachadaAluno.busca(query)) {
+            for (Object item : FachadaAluno.buscar(query)) {
             tableModel.addRow((Object[]) item);
         }
         }catch(NullPointerException ex){

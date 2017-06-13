@@ -80,7 +80,7 @@ public class RepositorioLogin extends Repositorio {
             delete(sql, id);
             resultado = true;
         } catch (SQLException ex) {
-            Logger.getLogger(RepositorioLeciona.class.getName()).log(Level.SEVERE, null, ex);
+            //Logger.getLogger(RepositorioLeciona.class.getName()).log(Level.SEVERE, null, ex);
             System.out.println("Erro:" + ex.getMessage());
         }
 
