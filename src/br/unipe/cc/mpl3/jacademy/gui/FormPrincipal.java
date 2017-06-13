@@ -73,6 +73,11 @@ public class FormPrincipal extends javax.swing.JFrame {
         });
 
         jButton5.setText("Relatórios");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -143,6 +148,12 @@ public class FormPrincipal extends javax.swing.JFrame {
         CrudLogin formlogin = new CrudLogin(); 
         formlogin.setVisible(true); 
     }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        // TODO add your handling code here:
+        FormRelatorios formrelatorios = new FormRelatorios(); 
+        formrelatorios.setVisible(true); 
+    }//GEN-LAST:event_jButton5ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
