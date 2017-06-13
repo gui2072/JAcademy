@@ -27,7 +27,7 @@ public class FachadaDisciplina {
     */
     public static List getDadoDisciplina(String query){
         List<Object> lista = new ArrayList<>();
-        for (Disciplina disciplina : Disciplina.getDadoDisciplina(query)) {
+        for (Disciplina disciplina : new Disciplina().getDadoDisciplina()) {
             lista.add(new Object[]{disciplina.getId(),disciplina.getNome(),disciplina.getDescricao(),disciplina.getSituacao(),disciplina.getSemestre(),disciplina.getObservacao()});
         }
         return lista;

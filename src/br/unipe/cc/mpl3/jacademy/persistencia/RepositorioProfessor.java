@@ -24,9 +24,9 @@ public class RepositorioProfessor extends Repositorio implements IRepositorioPro
                 + "VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 
         try {
-            save(sql, professor.getsituacao(),
+            save(sql, professor.getSituacao(),
                     professor.getProfissao(),
-                    professor.gettitularidade(),
+                    professor.getTitularidade(),
                     professor.getNome(),
                     professor.getRg(),
                     professor.getCpf(),
@@ -39,7 +39,7 @@ public class RepositorioProfessor extends Repositorio implements IRepositorioPro
                     professor.getCidade(),
                     professor.getEstadoCivil(),
                     professor.getCep(),
-                    professor.getobs());
+                    professor.getObs());
             resultado = true;
         } catch (SQLException ex) {
             System.out.println("Erro:" + ex.getMessage());
@@ -66,29 +66,36 @@ public class RepositorioProfessor extends Repositorio implements IRepositorioPro
 
     @Override
     public List<Professor> getProfessores() {
-
         List<Professor> professores = new ArrayList<Professor>();
-
         try {
             database = new DataBase();
-            String sql = "SELECT nome, cpf, matricula, telefone FROM professor order by matricula";
+            String sql = "SELECT * FROM professor order by matricula";
             ResultSet rs = database.getStatement().executeQuery(sql);
             try {
                 throw new QueryNullException(rs);
             } catch (QueryNullException ex) {
             }
-
             while (rs.next()) {
                 Professor professor = new Professor();
-
-                professor.setNome(rs.getString("nome"));
-                professor.setCpf(rs.getString("cpf"));
                 professor.setMatricula(rs.getInt("matricula"));
+                professor.setSituacao(rs.getString("situacao"));
+                professor.setProfissao(rs.getString("profissao"));
+                professor.setTitularidade(rs.getString("titularidade"));
+                professor.setNome(rs.getString("nome"));
+                professor.setRg(rs.getString("identidade"));
+                professor.setCpf(rs.getString("cpf"));
+                professor.setEstadoCivil(rs.getString("estado_civil"));
+                professor.setSexo(rs.getString("sexo"));
+                professor.setEmail(rs.getString("email"));
                 professor.setTelefone(rs.getString("telefone"));
-
+                professor.setLogradouro(rs.getString("endereco"));
+                professor.setBairro(rs.getString("bairro"));
+                professor.setCidade(rs.getString("cidade"));
+                professor.setEstado(rs.getString("estado"));
+                professor.setCep(rs.getString("cep"));
+                professor.setObservacao(rs.getString("observacao"));
                 professores.add(professor);
             }
-
             database.close();
         } catch (SQLException ex) {
             System.out.println("Erro:" + ex.getMessage());
@@ -106,9 +113,9 @@ public class RepositorioProfessor extends Repositorio implements IRepositorioPro
                 + " matricula = \'" + professor.getMatricula() + "\'";
 
         try {
-            update(sql, professor.getsituacao(),
+            update(sql, professor.getSituacao(),
                     professor.getProfissao(),
-                    professor.gettitularidade(),
+                    professor.getTitularidade(),
                     professor.getNome(),
                     professor.getRg(),
                     professor.getCpf(),
@@ -122,7 +129,7 @@ public class RepositorioProfessor extends Repositorio implements IRepositorioPro
                     professor.getCidade(),
                     professor.getEstadoCivil(),
                     professor.getCep(),
-                    professor.getobs());
+                    professor.getObs());
 
             resultado = true;
         } catch (SQLException ex) {
