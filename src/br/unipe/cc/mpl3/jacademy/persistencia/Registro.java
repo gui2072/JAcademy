@@ -18,17 +18,6 @@ import java.io.IOException;
  */
 public class Registro implements IRegistro {
 
-    public static void main(String args[]) {
-        Registro regis = new Registro();
-
-        if (regis.registroDisciplina()) {
-            System.out.println("Deu certo");
-        } else {
-            System.out.println("Não deu");
-        }
-
-    }
-
     public boolean registroDisciplina() {
         Boolean resultado = false;
         File arquivo = new File("relatorio.txt");

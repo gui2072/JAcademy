@@ -53,9 +53,19 @@ public class FachadaAluno {
     public static Map<String, String> carregar(String matricula){
         Aluno aluno = ServiceAluno.get(matricula);
         Map<String, String> map = new HashMap<>();
-        
-        
-        
+
+        map.put("matricula", String.valueOf(aluno.getMatricula()));
+        map.put("nome", aluno.getNome());
+        map.put("cpf", aluno.getCpf());
+        map.put("telefone", aluno.getTelefone());
+        map.put("logradouro", aluno.getLogradouro());
+        map.put("bairro", aluno.getBairro());
+        map.put("cep", aluno.getCep());
+        map.put("estado", aluno.getEstado());
+        map.put("cidade", aluno.getCidade());
+        map.put("email", aluno.getEmail());
+        map.put("observacao", aluno.getObservacao());
+
         return map;
     }
 
