@@ -14,17 +14,6 @@ import br.unipe.cc.mpl3.jacademy.modelo.Professor;
  */
 public class Registro implements IRegistro {
 
-    public static void main(String args[]) {
-        Registro regis = new Registro();
-
-        if (regis.registroDisciplina()) {
-            System.out.println("Deu certo");
-        } else {
-            System.out.println("Não deu");
-        }
-
-    }
-
     public boolean registroDisciplina() {
         RepositorioDisciplina disciplinas = new RepositorioDisciplina();
         Boolean resultado = false;
