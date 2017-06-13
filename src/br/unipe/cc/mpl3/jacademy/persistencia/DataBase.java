@@ -1,4 +1,5 @@
 package br.unipe.cc.mpl3.jacademy.persistencia;
+import br.unipe.cc.mpl3.jacademy.util.DriveException;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.sql.Connection;
@@ -15,7 +16,7 @@ public class DataBase {
     private Connection connection;
     private Statement statement;
 
-    public DataBase() throws SQLException {
+    public DataBase() throws SQLException, DriveException {
         Properties properties = new Properties();
         try {
             properties.load(new FileInputStream("config/dataBase.properties"));
@@ -24,6 +25,7 @@ public class DataBase {
             this.connection = DriverManager.getConnection("jdbc:mysql://" + properties.getProperty("endereco") + ":" + properties.getProperty("porta") + "/" + properties.getProperty("database"), properties.getProperty("usuario"), properties.getProperty("senha"));
             this.statement = connection.createStatement();
         } catch (ClassNotFoundException ex) {
+            throw new DriveException("");
         } catch (IOException ex) {
         }
     }

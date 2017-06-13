@@ -2,6 +2,8 @@ package br.unipe.cc.mpl3.jacademy.persistencia;
 
 import br.unipe.cc.mpl3.jacademy.modelo.Login;
 import br.unipe.cc.mpl3.jacademy.util.Criptografia;
+import br.unipe.cc.mpl3.jacademy.util.DriveException;
+import br.unipe.cc.mpl3.jacademy.util.QueryNullException;
 import java.io.UnsupportedEncodingException;
 import java.security.NoSuchAlgorithmException;
 import java.sql.ResultSet;
@@ -24,20 +26,26 @@ public class RepositorioLogin extends Repositorio {
             database = new DataBase();
             String sql = "SELECT id,senha FROM login WHERE id = \'" + id + "\' ";
             ResultSet resultSet = database.getStatement().executeQuery(sql);
+            try {
+                throw new QueryNullException(resultSet);
+            } catch (QueryNullException ex) {
+            }
 
             Criptografia criptografia = new Criptografia();
             String senhaHex = criptografia.criptografar(senha);
-            
+
             if (resultSet.next()) {
-                 String senhaBanco = resultSet.getString(2);
-            
-                if (senhaBanco.equals(senhaHex)) 
+                String senhaBanco = resultSet.getString(2);
+
+                if (senhaBanco.equals(senhaHex)) {
                     retorno = true;
+                }
             }
 
             database.close();
         } catch (SQLException ex) {
             System.out.println("Erro:" + ex.getMessage());
+        } catch (DriveException ex) {
         }
         return retorno;
     }
@@ -72,6 +80,7 @@ public class RepositorioLogin extends Repositorio {
             delete(sql, id);
             resultado = true;
         } catch (SQLException ex) {
+            Logger.getLogger(RepositorioLeciona.class.getName()).log(Level.SEVERE, null, ex);
             System.out.println("Erro:" + ex.getMessage());
         }
 
@@ -86,6 +95,10 @@ public class RepositorioLogin extends Repositorio {
             database = new DataBase();
             String sql = "SELECT id,usuario FROM login order by id";
             ResultSet rs = database.getStatement().executeQuery(sql);
+            try {
+                throw new QueryNullException(rs);
+            } catch (QueryNullException ex) {
+            }
 
             while (rs.next()) {
                 Login login = new Login();
@@ -97,9 +110,9 @@ public class RepositorioLogin extends Repositorio {
             }
 
             database.close();
-
         } catch (SQLException ex) {
             System.out.println("Erro:" + ex.getMessage());
+        } catch (DriveException ex) {
         }
 
         return professores;

@@ -1,6 +1,8 @@
 package br.unipe.cc.mpl3.jacademy.persistencia;
 
 import br.unipe.cc.mpl3.jacademy.modelo.Professor;
+import br.unipe.cc.mpl3.jacademy.util.DriveException;
+import br.unipe.cc.mpl3.jacademy.util.QueryNullException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -71,6 +73,10 @@ public class RepositorioProfessor extends Repositorio implements IRepositorioPro
             database = new DataBase();
             String sql = "SELECT nome, cpf, matricula, telefone FROM professor order by matricula";
             ResultSet rs = database.getStatement().executeQuery(sql);
+            try {
+                throw new QueryNullException(rs);
+            } catch (QueryNullException ex) {
+            }
 
             while (rs.next()) {
                 Professor professor = new Professor();
@@ -79,14 +85,14 @@ public class RepositorioProfessor extends Repositorio implements IRepositorioPro
                 professor.setCpf(rs.getString("cpf"));
                 professor.setMatricula(rs.getInt("matricula"));
                 professor.setTelefone(rs.getString("telefone"));
-                
+
                 professores.add(professor);
             }
 
             database.close();
-
         } catch (SQLException ex) {
             System.out.println("Erro:" + ex.getMessage());
+        } catch (DriveException ex) {
         }
 
         return professores;
@@ -96,8 +102,8 @@ public class RepositorioProfessor extends Repositorio implements IRepositorioPro
     public boolean atualizar(Professor professor) {
 
         boolean resultado = false;
-        String sql = "update professor set (situacao = ?,profissao = ?,titularidade = ?,nome = ?,identidade = ?,cpf = ?,estado_civil = ?,sexo = ?,email = ?,telefone = ?,endereco = ?,bairro = ?,cidade = ?,estado = ?,cep = ?,observacao = ?) "+ 
-                     " matricula = \'" + professor.getMatricula() + "\'";
+        String sql = "update professor set (situacao = ?,profissao = ?,titularidade = ?,nome = ?,identidade = ?,cpf = ?,estado_civil = ?,sexo = ?,email = ?,telefone = ?,endereco = ?,bairro = ?,cidade = ?,estado = ?,cep = ?,observacao = ?) "
+                + " matricula = \'" + professor.getMatricula() + "\'";
 
         try {
             update(sql, professor.getsituacao(),
@@ -117,7 +123,7 @@ public class RepositorioProfessor extends Repositorio implements IRepositorioPro
                     professor.getEstadoCivil(),
                     professor.getCep(),
                     professor.getobs());
-            
+
             resultado = true;
         } catch (SQLException ex) {
             System.out.println("Erro:" + ex.getMessage());
@@ -135,9 +141,13 @@ public class RepositorioProfessor extends Repositorio implements IRepositorioPro
             database = new DataBase();
             String sql = "SELECT * FROM professor where matricula = \'" + id + "\' order by matricula";
             ResultSet rs = database.getStatement().executeQuery(sql);
+            try {
+                throw new QueryNullException(rs);
+            } catch (QueryNullException ex) {
+            }
 
-            if(rs != null && rs.next()){
-                
+            if (rs != null && rs.next()) {
+
                 professor.setMatricula(rs.getInt("matricula"));
                 professor.setSituacao(rs.getString("situacao"));
                 professor.setProfissao(rs.getString("profissao"));
@@ -152,20 +162,20 @@ public class RepositorioProfessor extends Repositorio implements IRepositorioPro
                 professor.setLogradouro(rs.getString("endereco"));
                 professor.setBairro(rs.getString("bairro"));
                 professor.setCidade(rs.getString("cidade"));
-                professor.setEstado(rs.getString("estado"));         
+                professor.setEstado(rs.getString("estado"));
                 professor.setCep(rs.getString("cep"));
                 professor.setObservacao(rs.getString("observacao"));
             }
-            
-            database.close();
 
+            database.close();
         } catch (SQLException ex) {
             System.out.println("Erro:" + ex.getMessage());
+        } catch (DriveException ex) {
         }
 
         return professor;
     }
-    
+
     @Override
     public List<Professor> busca(String desc) {
 
@@ -174,8 +184,12 @@ public class RepositorioProfessor extends Repositorio implements IRepositorioPro
         try {
             database = new DataBase();
             String sql = "SELECT nome, cpf, matricula FROM professor WHERE nome LIKE '%" + desc + "%' order by matricula";
-     
+
             ResultSet rs = database.getStatement().executeQuery(sql);
+            try {
+                throw new QueryNullException(rs);
+            } catch (QueryNullException ex) {
+            }
 
             while (rs.next()) {
                 Professor professor = new Professor();
@@ -188,11 +202,10 @@ public class RepositorioProfessor extends Repositorio implements IRepositorioPro
             }
 
             database.close();
-
         } catch (SQLException ex) {
             System.out.println("Erro:" + ex.getMessage());
+        } catch (DriveException ex) {
         }
-
         return professores;
     }
 }

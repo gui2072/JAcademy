@@ -6,6 +6,8 @@
 package br.unipe.cc.mpl3.jacademy.persistencia;
 
 import br.unipe.cc.mpl3.jacademy.modelo.Disciplina;
+import br.unipe.cc.mpl3.jacademy.util.DriveException;
+import br.unipe.cc.mpl3.jacademy.util.QueryNullException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.HashSet;
@@ -28,6 +30,10 @@ public class RepositorioDisciplina {
         try {
             DataBase database = new DataBase();
             ResultSet resultSet = database.getStatement().executeQuery(query);
+            try {
+                throw new QueryNullException(resultSet);
+            } catch (QueryNullException ex) {
+            }
             while (resultSet.next()) {
                 Disciplina disciplina = new Disciplina();
                 disciplina.setId(resultSet.getInt("id"));
@@ -43,6 +49,7 @@ public class RepositorioDisciplina {
             resultSet.close();
         } catch (SQLException ex) {
             System.out.println("Exception RepositorioDisciplina:  " + ex);
+        } catch (DriveException ex) {
         }
         return dados;
     }

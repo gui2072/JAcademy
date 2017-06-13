@@ -6,6 +6,7 @@
 package br.unipe.cc.mpl3.jacademy.persistencia;
 
 import br.unipe.cc.mpl3.jacademy.modelo.Aluno;
+import br.unipe.cc.mpl3.jacademy.util.DriveException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.HashSet;
@@ -51,7 +52,9 @@ public class RepositorioAluno{
             database.close();
             database.getStatement().close(); // Em avaliação
             resultSet.close();
-        } catch (SQLException e) {
+        } catch (SQLException ex) {
+            System.out.println("Erro:" + ex.getMessage());
+        } catch (DriveException ex) {
         }
         return alunos;
     }
