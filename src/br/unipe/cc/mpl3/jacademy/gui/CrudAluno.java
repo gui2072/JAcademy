@@ -464,7 +464,7 @@ public class CrudAluno extends javax.swing.JFrame {
 
     private void bt_editarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_editarActionPerformed
         // TODO add your handling code here:
-        if (tAlunos.getSelectedRow() != -1){
+        if (tAlunos.getSelectedRow() != 0){
 
             FachadaProfessor fachadaprofessor = new FachadaProfessor();
             Professor professor = new Professor();
@@ -486,10 +486,7 @@ public class CrudAluno extends javax.swing.JFrame {
 
             jTabbedPane1.setEnabledAt(1, true);
             jTabbedPane1.setEnabledAt(0, false);
-
             this.jTabbedPane1.setSelectedIndex(1);
-
-            Acao = 2;
         }else {
             JOptionPane.showMessageDialog(null, "Selecione ao menos um professor para editar.");
         }

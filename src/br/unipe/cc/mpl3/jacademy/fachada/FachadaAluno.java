@@ -8,6 +8,7 @@ package br.unipe.cc.mpl3.jacademy.fachada;
 import br.unipe.cc.mpl3.jacademy.modelo.Aluno;
 import br.unipe.cc.mpl3.jacademy.modelo.ServiceAluno;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -17,7 +18,7 @@ import java.util.Map;
  * @author paulo
  */
 public class FachadaAluno {
-    
+
     public static List<Object> buscar(String busca){
         List<Object> lista = new ArrayList<>();
         for (Aluno aluno : ServiceAluno.listar(busca)) {
@@ -40,13 +41,22 @@ public class FachadaAluno {
         aluno.setCidade(dados.get("cidade"));
         aluno.setEmail(dados.get("email"));
         aluno.setObservacao(dados.get("observacao"));
-        
+
         if (dados.get("matricula") != ""){
             ServiceAluno.insert(aluno);
         } else {
             aluno.setMatricula(Integer.valueOf(dados.get("matricula")));
             ServiceAluno.update(aluno);
         }
+    }
+
+    public static Map<String, String> carregar(String matricula){
+        Aluno aluno = ServiceAluno.get(matricula);
+        Map<String, String> map = new HashMap<>();
+        
+        
+        
+        return map;
     }
 
     public static void deletar(String matricula){

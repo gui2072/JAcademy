@@ -16,15 +16,19 @@ public class ServiceAluno {
     public static List<Aluno> listar(String buscar){
         return (new RepositorioAluno()).list(buscar);
     }
-    
+
     public static void insert(Aluno aluno){
         (new RepositorioAluno()).insert(aluno);
     }
-    
+
     public static void update(Aluno aluno){
         (new RepositorioAluno()).update(aluno);
     }
-    
+
+    public static Aluno get(String matricula){
+        return(new RepositorioAluno()).get(matricula);
+    }
+
     public static void remove(String matricula){
         (new RepositorioAluno()).remove(matricula);
     }
