@@ -104,9 +104,9 @@ public class RepositorioProfessor extends Repositorio implements IRepositorioPro
     @Override
     public boolean atualizar(Professor professor) {
 
-        boolean resultado = false;
+        boolean resultado = false;  
         String sql = "update professor set (situacao = ?,profissao = ?,titularidade = ?,nome = ?,cpf = ?,sexo = ?,email = ?,telefone = ?,endereco = ?,bairro = ?,cidade = ?,estado = ?,cep = ?,observacao = ?) "
-                + " matricula = \'" + professor.getMatricula() + "\'";
+                + " where matricula = \'" + professor.getMatricula() + "\'";
 
         try {
             update(sql, professor.getSituacao(),
@@ -115,13 +115,12 @@ public class RepositorioProfessor extends Repositorio implements IRepositorioPro
                     professor.getNome(),
                     professor.getCpf(),
                     professor.getSexo(),
-                    professor.getDataNasc(),
                     professor.getEmail(),
                     professor.getTelefone(),
                     professor.getLogradouro(),
                     professor.getBairro(),
                     professor.getCidade(),
-                    professor.getEstadoCivil(),
+                    professor.getEstado(),
                     professor.getCep(),
                     professor.getObs());
 

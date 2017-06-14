@@ -591,6 +591,7 @@ public class CrudProfessor extends javax.swing.JFrame {
         else
             professor.setSituacao("In");
 
+        //professor.setMatricula(Integer.parseInt(jTextField_Mat.getText()));
         professor.setNome(jTextField_nome.getText());
         professor.setCpf(jTextField_CPF.getText());
         professor.setRg(jTextField_rg.getText());

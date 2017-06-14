@@ -5,7 +5,8 @@
  */
 package br.unipe.cc.mpl3.jacademy.gui;
 
-import br.unipe.cc.mpl3.jacademy.persistencia.Registro;
+import br.unipe.cc.mpl3.jacademy.fachada.FachadaRelatorios;
+import br.unipe.cc.mpl3.jacademy.persistencia.RepositorioRegistro;
 import javax.swing.JOptionPane;
 
 /**
@@ -117,13 +118,11 @@ public class FormRelatorios extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-       // if (jRadioButton2.isSelected())
-            //CHAMAR AQUI RELATORIO ALUNO
             
         if (jRadioButton4.isSelected()){
-            Registro registro = new Registro();
-            
-            registro.registroDisciplina();
+            FachadaRelatorios fachadarelatorios = new FachadaRelatorios();
+                        
+            fachadarelatorios.gerar();
             
             JOptionPane.showMessageDialog(null, "Relatório gerado com sucesso!");
         }
