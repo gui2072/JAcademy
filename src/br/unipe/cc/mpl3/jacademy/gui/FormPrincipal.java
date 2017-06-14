@@ -47,7 +47,7 @@ public class FormPrincipal extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Cantarell", 0, 24)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setIcon(new javax.swing.ImageIcon("/home/bruno/Dropbox/ACADÊMICO/JAcademy/config/logo.png")); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/unipe/cc/mpl3/jacademy/arquivos/logo.png"))); // NOI18N
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Menu Principal"));
 

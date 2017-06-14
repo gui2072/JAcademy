@@ -5,9 +5,6 @@
  */
 package br.unipe.cc.mpl3.jacademy.persistencia;
 
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
 
 /**
  *
@@ -16,7 +13,6 @@ import org.junit.Test;
 public class RegistroTest {
     Registro registro;
     
-    @Before
     public void setUp() {
         registro = new Registro();
     }
@@ -24,9 +20,8 @@ public class RegistroTest {
     /**
      * Test of registroDisciplina method, of class Registro.
      */
-    @Test
     public void testRegistroDisciplina() {
-        Assert.assertTrue(registro.registroDisciplina());
+        Assertment.assertTrue(registro.registroDisciplina());
     }
     
 }
