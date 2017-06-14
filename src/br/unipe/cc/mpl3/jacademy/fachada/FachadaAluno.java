@@ -42,10 +42,12 @@ public class FachadaAluno {
         aluno.setEmail(dados.get("email"));
         aluno.setObservacao(dados.get("observacao"));
 
-        if (dados.get("matricula") != ""){
+        System.out.println(dados.get("matricula"));
+        
+        if (dados.get("matricula") == ""){
             ServiceAluno.insert(aluno);
         } else {
-            aluno.setMatricula(Integer.valueOf(dados.get("matricula")));
+            aluno.setMatricula(Integer.parseInt(dados.get("matricula")));
             ServiceAluno.update(aluno);
         }
     }

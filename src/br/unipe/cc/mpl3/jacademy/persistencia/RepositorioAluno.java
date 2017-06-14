@@ -36,6 +36,7 @@ public class RepositorioAluno{
     public boolean insert(Aluno aluno){
         String query = "INSERT INTO aluno(nome, cpf, profissao, email, telefone, endereco, bairro, cidade, estado, cep, observacao) VALUES(?,?,?,?,?,?,?,?,?,?,?,?)";
         try {
+            System.out.println("br.unipe.cc.mpl3.jacademy.persistencia.RepositorioAluno.insert()");
             return execute(query, aluno.getNome(), aluno.getCpf(), aluno.getProfissao(), aluno.getEmail(), aluno.getTelefone(), aluno.getLogradouro(), aluno.getBairro(), aluno.getCidade(), aluno.getEstado(), aluno.getCep(), aluno.getObservacao());
         } catch (SQLException ex) {
             return false;
@@ -47,12 +48,13 @@ public class RepositorioAluno{
     public boolean update(Aluno aluno){
         String query = "UPDATE aluno SET(nome=?, cpf=?, profissao=?, email=?, telefone=?, endereco=?, bairro=?, cidade=?, estado=?, cep=?, observacao=?) WHERE matricula=?";
         try {
+            System.out.println("br.unipe.cc.mpl3.jacademy.persistencia.RepositorioAluno.update()");
             return execute(query,  aluno.getNome(), aluno.getCpf(), aluno.getProfissao(), aluno.getEmail(), aluno.getTelefone(), aluno.getLogradouro(), aluno.getBairro(), aluno.getCidade(), aluno.getEstado(), aluno.getCep(), aluno.getObservacao(), aluno.getMatricula());
         } catch (SQLException ex) {
-            return false;
         } catch (DriveException ex) {
-            return false;
+            
         }
+        return false;
     }
     
     public boolean remove(String matricula){
