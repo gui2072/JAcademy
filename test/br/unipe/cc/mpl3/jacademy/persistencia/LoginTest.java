@@ -5,9 +5,12 @@
  */
 package br.unipe.cc.mpl3.jacademy.persistencia;
 
-import java.io.File;
+import br.unipe.cc.mpl3.jacademy.util.Criptografia;
+import java.io.UnsupportedEncodingException;
+import java.security.NoSuchAlgorithmException;
 import org.junit.After;
 import org.junit.AfterClass;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -17,9 +20,9 @@ import static org.junit.Assert.*;
  *
  * @author bruno
  */
-public class RegistroTest {
+public class LoginTest {
     
-    public RegistroTest() {
+    public LoginTest() {
     }
     
     @BeforeClass
@@ -39,13 +42,12 @@ public class RegistroTest {
     }
     
     @Test
-    public void verificarGeracaoRelatorio() {
-        RepositorioRegistro registro = new RepositorioRegistro();
+    public void verificarCriptografia() throws UnsupportedEncodingException, NoSuchAlgorithmException {
+        Criptografia cripitografia = new Criptografia();
         
-        registro.registroDisciplina();
+        String senha1 = cripitografia.criptografar("password");
+        String senha2 = cripitografia.criptografar("password");
         
-        File relatorio = new File("relatorio.txt");
-        
-        assertTrue(relatorio.exists());
+        Assert.assertEquals(senha1,senha2);
     }
 }

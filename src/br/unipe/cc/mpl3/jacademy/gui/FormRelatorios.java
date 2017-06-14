@@ -6,7 +6,7 @@
 package br.unipe.cc.mpl3.jacademy.gui;
 
 import br.unipe.cc.mpl3.jacademy.fachada.FachadaRelatorios;
-import br.unipe.cc.mpl3.jacademy.persistencia.Registro;
+import br.unipe.cc.mpl3.jacademy.persistencia.RepositorioRegistro;
 import javax.swing.JOptionPane;
 
 /**

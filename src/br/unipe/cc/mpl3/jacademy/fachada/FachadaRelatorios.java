@@ -5,7 +5,7 @@
  */
 package br.unipe.cc.mpl3.jacademy.fachada;
 
-import br.unipe.cc.mpl3.jacademy.persistencia.Registro;
+import br.unipe.cc.mpl3.jacademy.persistencia.RepositorioRegistro;
 
 /**
  *
@@ -14,7 +14,7 @@ import br.unipe.cc.mpl3.jacademy.persistencia.Registro;
 public class FachadaRelatorios {
     
     public boolean gerar(){
-        Registro registro = new Registro();
+        RepositorioRegistro registro = new RepositorioRegistro();
             
         return registro.registroDisciplina();
     }

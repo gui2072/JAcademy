@@ -16,7 +16,7 @@ import java.io.IOException;
  *
  * @author Nitai Charan
  */
-public class Registro implements IRegistro {
+public class RepositorioRegistro implements IRegistro {
 
     public boolean registroDisciplina() {
         Boolean resultado = false;
