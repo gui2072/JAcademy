@@ -44,7 +44,7 @@ public class FachadaAluno {
 
         System.out.println(dados.get("matricula"));
         
-        if (dados.get("matricula") == ""){
+        if (dados.get("matricula").isEmpty()){
             ServiceAluno.insert(aluno);
         } else {
             aluno.setMatricula(Integer.parseInt(dados.get("matricula")));

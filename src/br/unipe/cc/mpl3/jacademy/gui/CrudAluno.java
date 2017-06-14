@@ -464,7 +464,8 @@ public class CrudAluno extends javax.swing.JFrame {
         // TODO add your handling code here:
         if (tAlunos.getSelectedRow() != 0){
             Map<String, String> dados = FachadaAluno.carregar(tAlunos.getValueAt(tAlunos.getSelectedRow(), 0).toString());
-
+                
+            fMatricula.setText(dados.get("matricula"));
             fNome.setText(dados.get("nome"));
             jTextField_CPF.setText(dados.get("cpf"));
             fProfissao.setText(dados.get("profissao"));
