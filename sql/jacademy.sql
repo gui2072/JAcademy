@@ -1,8 +1,8 @@
--- MySQL dump 10.15  Distrib 10.0.29-MariaDB, for debian-linux-gnu (x86_64)
+-- MySQL dump 10.13  Distrib 5.5.55, for debian-linux-gnu (x86_64)
 --
--- Host: localhost    Database: localhost
+-- Host: localhost    Database: jacademy
 -- ------------------------------------------------------
--- Server version	10.0.29-MariaDB-0ubuntu0.16.04.1
+-- Server version	5.5.55-0+deb8u1
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -36,7 +36,7 @@ CREATE TABLE `aluno` (
   `cep` varchar(9) NOT NULL,
   `observacao` varchar(512) DEFAULT NULL,
   PRIMARY KEY (`matricula`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -45,7 +45,7 @@ CREATE TABLE `aluno` (
 
 LOCK TABLES `aluno` WRITE;
 /*!40000 ALTER TABLE `aluno` DISABLE KEYS */;
-INSERT INTO `aluno` VALUES (1,'teste Profissao','nome0','999','demo@demoro:)','9999-999','lajdslkjk','lajdslkjk','lajdslkjk','laj','lajdslkjk','lajdslkjk'),(2,'teste Profissao','nome1','999','demo@demoro:)','9999-999','lajdslkjk','lajdslkjk','lajdslkjk','laj','lajdslkjk','lajdslkjk'),(3,'teste Profissao','nome2','999','demo@demoro:)','9999-999','lajdslkjk','lajdslkjk','lajdslkjk','laj','lajdslkjk','lajdslkjk'),(4,'teste Profissao','nome3','999','demo@demoro:)','9999-999','lajdslkjk','lajdslkjk','lajdslkjk','laj','lajdslkjk','lajdslkjk'),(5,'teste Profissao','nome4','999','demo@demoro:)','9999-999','lajdslkjk','lajdslkjk','lajdslkjk','laj','lajdslkjk','lajdslkjk'),(6,'teste Profissao','nome5','999','demo@demoro:)','9999-999','lajdslkjk','lajdslkjk','lajdslkjk','laj','lajdslkjk','lajdslkjk'),(7,'teste Profissao','nome6','999','demo@demoro:)','9999-999','lajdslkjk','lajdslkjk','lajdslkjk','laj','lajdslkjk','lajdslkjk'),(8,'teste Profissao','nome7','999','demo@demoro:)','9999-999','lajdslkjk','lajdslkjk','lajdslkjk','laj','lajdslkjk','lajdslkjk'),(9,'teste Profissao','nome8','999','demo@demoro:)','9999-999','lajdslkjk','lajdslkjk','lajdslkjk','laj','lajdslkjk','lajdslkjk'),(10,'teste Profissao','nome9','999','demo@demoro:)','9999-999','lajdslkjk','lajdslkjk','lajdslkjk','laj','lajdslkjk','lajdslkjk'),(11,'teste Profissao','nome10','999','demo@demoro:)','9999-999','lajdslkjk','lajdslkjk','lajdslkjk','laj','lajdslkjk','lajdslkjk');
+INSERT INTO `aluno` VALUES (1,'teste Profissao','nome0','999','demo@demoro:)','9999-999','lajdslkjk','lajdslkjk','lajdslkjk','laj','lajdslkjk','lajdslkjk'),(2,'teste Profissao','nome1','999','demo@demoro:)','9999-999','lajdslkjk','lajdslkjk','lajdslkjk','laj','lajdslkjk','lajdslkjk'),(3,'teste Profissao','nome2','999','demo@demoro:)','9999-999','lajdslkjk','lajdslkjk','lajdslkjk','laj','lajdslkjk','lajdslkjk'),(4,'teste Profissao','nome3','999','demo@demoro:)','9999-999','lajdslkjk','lajdslkjk','lajdslkjk','laj','lajdslkjk','lajdslkjk'),(5,'teste Profissao','nome4','999','demo@demoro:)','9999-999','lajdslkjk','lajdslkjk','lajdslkjk','laj','lajdslkjk','lajdslkjk'),(7,'teste Profissao','nome6','999','demo@demoro:)','9999-999','lajdslkjk','lajdslkjk','lajdslkjk','laj','lajdslkjk','lajdslkjk'),(8,'teste Profissao','nome7','999','demo@demoro:)','9999-999','lajdslkjk','lajdslkjk','lajdslkjk','laj','lajdslkjk','lajdslkjk'),(9,'teste Profissao','nome8','999','demo@demoro:)','9999-999','lajdslkjk','lajdslkjk','lajdslkjk','laj','lajdslkjk','lajdslkjk'),(10,'teste Profissao','nome9','999','demo@demoro:)','9999-999','lajdslkjk','lajdslkjk','lajdslkjk','laj','lajdslkjk','lajdslkjk');
 /*!40000 ALTER TABLE `aluno` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -107,7 +107,7 @@ DROP TABLE IF EXISTS `login`;
 CREATE TABLE `login` (
   `id` int(11) NOT NULL,
   `usuario` varchar(11) DEFAULT NULL,
-  `senha` int(255) NOT NULL,
+  `senha` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -118,7 +118,7 @@ CREATE TABLE `login` (
 
 LOCK TABLES `login` WRITE;
 /*!40000 ALTER TABLE `login` DISABLE KEYS */;
-INSERT INTO `login` VALUES (1,'A171',12345);
+INSERT INTO `login` VALUES (123,'Usu','a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3'),(123456,'123456','8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92'),(12345678,'12345678','ef797c8118f02dfb649607dd5d3f8c7623048c9c063d532cc95c5ed7a898a64f');
 /*!40000 ALTER TABLE `login` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -169,7 +169,7 @@ CREATE TABLE `professor` (
   `observacao` varchar(512) DEFAULT NULL,
   `situacao` varchar(2) NOT NULL,
   PRIMARY KEY (`matricula`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -178,7 +178,7 @@ CREATE TABLE `professor` (
 
 LOCK TABLES `professor` WRITE;
 /*!40000 ALTER TABLE `professor` DISABLE KEYS */;
-INSERT INTO `professor` VALUES (1,'','','João','','',NULL,NULL,'','','','','',NULL,''),(2,'','','João','','',NULL,NULL,'','','','','',NULL,'');
+INSERT INTO `professor` VALUES (1,'','','João','','',NULL,NULL,'','','','','',NULL,''),(2,'','','João','','',NULL,NULL,'','','','','',NULL,''),(3,'Teste','Do','Bruno','38738636','Fe','','348647','jjhjhj','jhjhj','hjhjh','Cas','44848',NULL,'In'),(5,'mk','Do','kmkm','kmk','Fe','km','mkm','mk','mk','mkm','Cas','km',NULL,'In');
 /*!40000 ALTER TABLE `professor` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -191,4 +191,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-06-13  0:26:12
+-- Dump completed on 2017-06-14  5:59:08
