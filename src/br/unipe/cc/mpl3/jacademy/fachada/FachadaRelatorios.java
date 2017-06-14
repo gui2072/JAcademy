@@ -5,10 +5,18 @@
  */
 package br.unipe.cc.mpl3.jacademy.fachada;
 
+import br.unipe.cc.mpl3.jacademy.persistencia.Registro;
+
 /**
  *
  * @author bruno
  */
 public class FachadaRelatorios {
+    
+    public boolean gerar(){
+        Registro registro = new Registro();
+            
+        return registro.registroDisciplina();
+    }
     
 }
